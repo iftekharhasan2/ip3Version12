@@ -802,7 +802,7 @@ const HCD_FAILURE_MODES = [
 const FRAMEWORK_MODELS = [
   { name: 'Actionable Architecture', body: 'Turn complexity and evidence into something that can be implemented.' },
   { name: 'Poly-Solution Architecture', body: 'Design connected responses for connected problems.' },
-  { name: 'Translational Policy Model', body: 'Research → Policy Intelligence → Systems Design → Digital Architecture → Implementation → Learning & Scale' },
+  { name: 'Translational Policy Model', body: 'Diagnostics & Research → Policy & Strategy Design → Financing & Bankability → Delivery Architecture → Implementation Support → Learning & Scale' },
   { name: 'IP3 Impact Logic', body: 'Sense → Design → Test → Implement → Learn → Scale' },
   { name: 'Dynamic Network Model', body: 'Assemble interdisciplinary, cross-geographic expertise around the specific challenge while retaining the local and institutional intelligence that makes solutions workable.' },
 ];

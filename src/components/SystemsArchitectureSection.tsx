@@ -70,7 +70,7 @@ export const SystemsArchitectureSection: React.FC = () => {
       {/* Hero Systems Architecture & Orbital Section */}
       <section
         id="systems-hero"
-        className="relative w-full min-h-[90vh] flex flex-col justify-center py-16 sm:py-20 px-4 sm:px-8 lg:px-12 max-w-[1500px] mx-auto z-10 bg-[#050a12]"
+        className="relative w-full min-h-[90vh] flex flex-col justify-center pt-16 sm:pt-20 pb-0 px-4 sm:px-8 lg:px-12 max-w-[1500px] mx-auto z-10 bg-[#050a12]"
       >
         <div className="flex flex-col items-center w-full my-auto py-4">
           {/* Header Block: Headline & Narrative */}
@@ -237,7 +237,7 @@ export const SystemsArchitectureSection: React.FC = () => {
       {/* What Clients Hire IP3 to Deliver Section */}
       <section
         id="client-deliverables-section"
-        className="relative w-full py-16 sm:py-24 px-4 sm:px-8 lg:px-12 max-w-[1500px] mx-auto z-10 bg-[#050a12] border-t border-slate-800/80"
+        className="relative w-full pt-0 pb-16 sm:pb-24 px-4 sm:px-8 lg:px-12 max-w-[1500px] mx-auto z-10 bg-[#050a12] border-t border-slate-800/80"
       >
         <div className="flex flex-col items-center text-center max-w-[1500px] w-full mx-auto space-y-4 mb-6">
           <motion.div

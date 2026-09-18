@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { motion } from 'motion/react';
 import { useCMS } from '../context/CMSContext';
 import { defaultStoryThemes } from '../data/defaultContent';
 import type { StoryTheme } from '../types';
@@ -20,10 +21,10 @@ export const STATIC_STORY_THEMES: StoryTheme[] = [
     title: 'From Polycrisis to Polysolutions',
     icon: 'network',
     badge: 'THEME 01 • ACTIVE SCENE',
-    category: 'Whole-Systems Architecture',
+    category: 'IP3 Sector Expertise',
     headline: 'From Polycrisis to Polysolutions',
     quote:
-      '"The world’s challenges are interconnected, overlapping, and cascading. We help leaders see the whole system and act across it."',
+      'IP3 works across eight interconnected sectors where economic, institutional, environmental and technological risks overlap. We combine specialist sector knowledge with cross-cutting capabilities in economics, finance, governance, data and implementation.',
     cards: [
       {
         tag: '01 / DIAGNOSIS',
@@ -152,6 +153,58 @@ export const STATIC_STORY_THEMES: StoryTheme[] = [
   },
 ];
 
+const sectorSystemsItems = [
+  {
+    id: 'climate-energy-resilience',
+    title: 'Climate, Energy & Resilience',
+    quote: 'climate commitments must become investment-ready adaptation and resilient infrastructure.',
+    deliverables: 'climate economics, adaptation investment planning, climate finance & NDC implementation, green pipelines, transition planning.',
+    tags: 'Economics · Finance · Project Preparation · MEL',
+  },
+  {
+    id: 'education-skills-human-capital',
+    title: 'Education, Skills & Human Capital',
+    quote: 'learning systems must produce skills for changing economies.',
+    deliverables: 'education policy & financing, TVET & skills systems, learning outcomes, institutional reform, human-capital analytics.',
+  },
+  {
+    id: 'health-systems-social-protection',
+    title: 'Health Systems & Social Protection',
+    quote: 'coverage and protection must be fiscally sustainable and well targeted.',
+    deliverables: 'health economics & financing, social-protection design, targeting & delivery systems, costing, evaluation.',
+  },
+  {
+    id: 'digital-government-data-dpi',
+    title: 'Digital Government, Data & DPI',
+    quote: 'digital transformation must improve services without creating governance or exclusion risks.',
+    deliverables: 'DPI diagnostics, digital-government strategy, data governance & interoperability, digital inclusion, service transformation.',
+  },
+  {
+    id: 'governance-institutions-public-finance',
+    title: 'Governance, Institutions & Public Finance',
+    quote: 'policies fail when institutions cannot implement them consistently.',
+    deliverables: 'institutional diagnostics, PFM reform, public-administration reform, accountability & anti-corruption, delivery systems, capacity development.',
+  },
+  {
+    id: 'economic-transformation-trade-psd',
+    title: 'Economic Transformation, Trade & Private-Sector Development',
+    quote: 'growth must create jobs through productive investment and diversification.',
+    deliverables: 'macro & sector diagnostics, competitiveness & trade, investment climate, value chains & MSMEs, jobs & productivity, private-capital mobilization.',
+  },
+  {
+    id: 'sustainable-finance-esg-circular',
+    title: 'Sustainable Finance, ESG & Circular Economy',
+    quote: 'sustainability commitments must become investable pipelines and credible disclosure.',
+    deliverables: 'ESG strategy & reporting, sustainable/green finance, circular-economy investment cases, climate-risk integration.',
+  },
+  {
+    id: 'ai-emerging-technology-public',
+    title: 'AI & Emerging Technology for Public Systems',
+    quote: 'public AI needs readiness, governance and accountability, not software hype.',
+    deliverables: 'AI readiness, responsible-AI frameworks, algorithmic accountability, public-service applications, workforce & adoption strategy.',
+  },
+];
+
 interface PolySolutionsSectionProps {
   activeThemeIndex?: number;
   onThemeChange?: (index: number) => void;
@@ -169,45 +222,27 @@ export const PolySolutionsSection: React.FC<PolySolutionsSectionProps> = ({
   const themes = data.storyThemes && data.storyThemes.length > 0 ? data.storyThemes : defaultStoryThemes;
 
   const [internalThemeIndex, setInternalThemeIndex] = useState<number>(0);
-  const activeIndex =
-    controlledThemeIndex !== undefined ? controlledThemeIndex : internalThemeIndex;
 
   const sectionRef = useRef<HTMLElement>(null);
   const masterCardRef = useRef<HTMLDivElement>(null);
-  const isProgrammaticScrollRef = useRef<boolean>(false);
 
-  // Sync with external controlled index
+  // Passive sync with external controlled index (without scroll hijacking or checkpoints)
   useEffect(() => {
     if (controlledThemeIndex !== undefined) {
       setInternalThemeIndex(controlledThemeIndex);
-      const targetEl = document.getElementById(`theme-horizon-${controlledThemeIndex + 1}`);
-      if (targetEl) {
-        isProgrammaticScrollRef.current = true;
-        const topOffset = 85;
-        const elementPosition = targetEl.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({
-          top: elementPosition - topOffset,
-          behavior: 'smooth',
-        });
-        setTimeout(() => {
-          isProgrammaticScrollRef.current = false;
-        }, 800);
-      }
     }
   }, [controlledThemeIndex]);
 
-  // Observer to track which theme is currently in the viewport as user scrolls the page
+  // Observer to track which theme is currently in the viewport as user scrolls the page naturally
   useEffect(() => {
-    const horizonElements = themes.map((_, idx) =>
-      document.getElementById(`theme-horizon-${idx + 1}`)
-    ).filter(Boolean) as HTMLElement[];
+    const horizonElements = themes
+      .map((_, idx) => document.getElementById(`theme-horizon-${idx + 1}`))
+      .filter(Boolean) as HTMLElement[];
 
     if (horizonElements.length === 0) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (isProgrammaticScrollRef.current) return;
-
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const indexAttr = entry.target.getAttribute('data-theme-index');
@@ -240,16 +275,12 @@ export const PolySolutionsSection: React.FC<PolySolutionsSectionProps> = ({
       }
       const targetEl = document.getElementById(`theme-horizon-${index + 1}`);
       if (targetEl) {
-        isProgrammaticScrollRef.current = true;
         const topOffset = 85;
         const elementPosition = targetEl.getBoundingClientRect().top + window.pageYOffset;
         window.scrollTo({
           top: elementPosition - topOffset,
           behavior: 'smooth',
         });
-        setTimeout(() => {
-          isProgrammaticScrollRef.current = false;
-        }, 800);
       }
     },
     [onThemeChange]
@@ -259,7 +290,7 @@ export const PolySolutionsSection: React.FC<PolySolutionsSectionProps> = ({
     <section
       id="polysolutions-section"
       ref={sectionRef}
-      className="relative w-full bg-[#050a12] mt-16 sm:mt-24 pt-16 sm:pt-24 pb-20 sm:pb-32 px-4 sm:px-6 lg:px-10 border-t border-slate-800/80 select-text"
+      className="relative w-full bg-[#050a12] mt-0 pt-0 pb-20 sm:pb-32 px-4 sm:px-6 lg:px-10 border-t-0 select-text scroll-smooth"
     >
       {/* Background Ambient Glow Gradients */}
       <div className="absolute top-1/6 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-[#ff7e67]/5 rounded-full blur-[150px] pointer-events-none" />
@@ -294,6 +325,51 @@ export const PolySolutionsSection: React.FC<PolySolutionsSectionProps> = ({
                 >
                   {/* Horizon Header */}
                   <div className={`flex flex-col space-y-3 ${idx === 0 || idx === 1 ? 'w-full max-w-none' : 'max-w-4xl'}`}>
+                    <div className={idx === 1 ? 'flex flex-col items-start gap-4 w-full text-left' : 'flex items-center gap-2'}>
+                      {idx === 1 && (
+                        <div
+                          id="sector-systems-items-container"
+                          className="w-full max-w-5xl space-y-6 pt-6 pb-[200px] text-left mx-auto"
+                        >
+                          {sectorSystemsItems.map((item, itemIdx) => (
+                            <motion.p
+                              key={item.id}
+                              id={item.id}
+                              initial={{ opacity: 0, y: 15 }}
+                              whileInView={{ opacity: 1, y: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 0.5, delay: 0.05 * itemIdx }}
+                              className="text-left w-full text-lg sm:text-xl md:text-2xl leading-relaxed text-slate-200"
+                            >
+                              <strong className="font-bold text-white tracking-tight">
+                                {item.title}
+                              </strong>{' '}
+                              <span className="text-slate-400 font-light">—</span>{' '}
+                              <span className="italic text-[#38d9c0] font-medium">
+                                "{item.quote}"
+                              </span>{' '}
+                              <span className="text-[#38d9c0] font-bold mx-1">→</span>{' '}
+                              <span className="text-slate-300 font-normal">
+                                {item.deliverables}
+                              </span>
+                              {item.tags && (
+                                <span className="inline-block mt-1 sm:mt-0 sm:ml-2.5 px-2.5 py-0.5 rounded-full text-xs font-mono font-medium tracking-wide bg-[#38d9c0]/15 text-[#38d9c0] border border-[#38d9c0]/30 align-middle">
+                                  {item.tags}
+                                </span>
+                              )}
+                            </motion.p>
+                          ))}
+                        </div>
+                      )}
+                      <span className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.22em] text-[#38d9c0] uppercase">
+                        {idx === 0
+                          ? 'IP3 SECTOR EXPERTISE'
+                          : idx === 1
+                          ? 'FROM ANALYSIS TO IMPLEMENTATION'
+                          : (theme.category || 'Whole-Systems Architecture').toUpperCase()}
+                      </span>
+                    </div>
+
                     <h3
                       className={`font-serif font-bold text-slate-100 tracking-tight leading-[1.08] ${
                         idx === 0 ? 'whitespace-nowrap overflow-visible' : ''
@@ -315,8 +391,22 @@ export const PolySolutionsSection: React.FC<PolySolutionsSectionProps> = ({
                       {theme.headline}
                     </h3>
 
-                    <p className="font-serif italic text-slate-300/90 text-lg sm:text-xl lg:text-[22px] font-normal leading-relaxed">
-                      {theme.quote}
+                    <p
+                      className={`${
+                        idx === 0 || idx === 1
+                          ? 'text-slate-300 text-base sm:text-lg lg:text-[19px]'
+                          : 'font-serif italic text-slate-300/90 text-lg sm:text-xl lg:text-[22px]'
+                      } font-normal leading-relaxed max-w-4xl`}
+                    >
+                      {idx === 0 &&
+                      (theme.quote?.includes('world’s challenges') ||
+                        theme.quote?.includes("world's challenges"))
+                        ? 'IP3 works across eight interconnected sectors where economic, institutional, environmental and technological risks overlap. We combine specialist sector knowledge with cross-cutting capabilities in economics, finance, governance, data and implementation.'
+                        : idx === 1 &&
+                          (theme.quote?.includes('Bridging the chasm') ||
+                            !theme.quote?.includes('decisions institutions actually have to make'))
+                        ? 'Our work is designed around the decisions institutions actually have to make: what to reform, what to finance, how to structure implementation, where risks sit, how results will be measured, and what evidence is needed to scale.'
+                        : theme.quote}
                     </p>
                   </div>
 

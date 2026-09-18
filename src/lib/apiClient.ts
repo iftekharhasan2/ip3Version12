@@ -8,6 +8,14 @@
 
 const RAW_BASE = (import.meta.env.VITE_API_BASE_URL || '').trim();
 
+let inMemoryToken: string | null = null;
+export function setAuthToken(token: string | null) {
+  inMemoryToken = token;
+}
+export function getAuthToken(): string | null {
+  return inMemoryToken;
+}
+
 /** In dev this stays empty and Vite proxies /api to the local server. */
 export const API_BASE = RAW_BASE.replace(/\/+$/, '');
 
@@ -49,6 +57,7 @@ export async function request<T = any>(path: string, options: RequestOptions = {
       credentials: 'include',
       headers: {
         Accept: 'application/json',
+        ...(inMemoryToken ? { Authorization: `Bearer ${inMemoryToken}` } : {}),
         ...(body !== undefined ? { 'Content-Type': 'application/json' } : {}),
         ...headers,
       },

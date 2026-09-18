@@ -752,10 +752,10 @@ export const defaultStoryThemes: StoryTheme[] = [
     title: 'From Polycrisis to Polysolutions',
     icon: 'network',
     badge: 'THEME 01 • ACTIVE SCENE',
-    category: 'Whole-Systems Architecture',
+    category: 'IP3 Sector Expertise',
     headline: 'From Polycrisis to Polysolutions',
     quote:
-      '"The world’s challenges are interconnected, overlapping, and cascading. We help leaders see the whole system and act across it."',
+      'IP3 works across eight interconnected sectors where economic, institutional, environmental and technological risks overlap. We combine specialist sector knowledge with cross-cutting capabilities in economics, finance, governance, data and implementation.',
     cards: [
       {
         tag: '01 / DIAGNOSIS',
@@ -786,10 +786,10 @@ export const defaultStoryThemes: StoryTheme[] = [
     title: 'Translation, Not Theory',
     icon: 'wrench',
     badge: 'THEME 02 • ACTIVE SCENE',
-    category: 'Statutory & Implementation Architecture',
+    category: 'From Analysis to Implementation',
     headline: 'Translation, Not Theory',
     quote:
-      '"Bridging the chasm between visionary global treaties and operational municipal & national enforcement."',
+      'Our work is designed around the decisions institutions actually have to make: what to reform, what to finance, how to structure implementation, where risks sit, how results will be measured, and what evidence is needed to scale.',
     cards: [
       {
         tag: '01 / CODIFICATION',
@@ -886,8 +886,8 @@ export const defaultStoryThemes: StoryTheme[] = [
 
 export const defaultEightSystemsConfig: EightSystemsConfig = {
   badge: 'Operationalized Across 8 Interconnected Realities',
-  titleMain: 'Eight systems. One ',
-  titleHighlight: 'overlapping reality.',
+  titleMain: 'Eight sectors. One ',
+  titleHighlight: 'integrated delivery model.',
   fontFamily: 'newsreader',
   glowIntensity: 1,
   systems: SYSTEMS_DATA,

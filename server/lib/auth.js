@@ -36,10 +36,10 @@ export async function verifyPassword(password) {
 
 export function cookieOptions() {
   const isProd = process.env.NODE_ENV === 'production';
-  const sameSite = process.env.COOKIE_SAMESITE || (isProd ? 'none' : 'lax');
+  const sameSite = process.env.COOKIE_SAMESITE || (isProd ? 'none' : 'none');
   return {
     httpOnly: true,
-    secure: isProd || sameSite === 'none',
+    secure: true,
     sameSite,
     maxAge: MAX_AGE_MS,
     path: '/',
@@ -51,8 +51,12 @@ export function issueSession(res, user) {
   const token = jwt.sign({ sub: user.email, role: user.role }, jwtSecret(), {
     expiresIn: `${SESSION_DAYS}d`,
   });
-  res.cookie(COOKIE_NAME, token, cookieOptions());
-  return expiresAt.toISOString();
+  try {
+    res.cookie(COOKIE_NAME, token, cookieOptions());
+  } catch {
+    // ignore if headers already sent
+  }
+  return { expiresAt: expiresAt.toISOString(), token };
 }
 
 export function clearSession(res) {
@@ -60,7 +64,10 @@ export function clearSession(res) {
 }
 
 export function readSession(req) {
-  const token = req.cookies?.[COOKIE_NAME];
+  const cookieToken = req.cookies?.[COOKIE_NAME];
+  const authHeader = req.headers?.authorization;
+  const headerToken = authHeader?.startsWith('Bearer ') ? authHeader.slice(7).trim() : null;
+  const token = cookieToken || headerToken;
   if (!token) return null;
   try {
     const payload = jwt.verify(token, jwtSecret());

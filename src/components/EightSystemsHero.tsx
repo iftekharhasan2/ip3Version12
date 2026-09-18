@@ -146,13 +146,33 @@ export const EightSystemsHero: React.FC<EightSystemsHeroProps> = ({
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="pl-1 sm:pl-2 pt-1 pb-1 w-full max-w-none"
         >
-          <h1
-            className={`${getFontClass()} leading-[1.08] sm:leading-[1.06] tracking-[-0.025em] text-slate-100 font-normal whitespace-nowrap overflow-visible`}
-            style={{ fontSize: 'clamp(22px, 3.8vw, 64px)' }}
-          >
-            <span className="inline">{titleMain || 'Eight systems. One '}</span>
-            <span className="inline text-slate-300">{titleHighlight || 'overlapping reality.'}</span>
-          </h1>
+          {(() => {
+            const isFullSentenceInMain =
+              titleMain?.trim() === 'Eight sectors. One integrated delivery model.' ||
+              titleMain?.trim() === 'Eight sectors. One integrated delivery model';
+
+            const displayTitleMain = isFullSentenceInMain
+              ? 'Eight sectors. One '
+              : titleMain && titleMain !== 'Eight systems. One '
+              ? titleMain
+              : 'Eight sectors. One ';
+
+            const displayTitleHighlight = isFullSentenceInMain
+              ? 'integrated delivery model.'
+              : titleHighlight && titleHighlight !== 'overlapping reality.'
+              ? titleHighlight
+              : 'integrated delivery model.';
+
+            return (
+              <h1
+                className={`${getFontClass()} leading-[1.08] sm:leading-[1.06] tracking-[-0.025em] text-slate-100 font-normal whitespace-nowrap overflow-visible`}
+                style={{ fontSize: 'clamp(22px, 3.8vw, 64px)' }}
+              >
+                <span className="inline">{displayTitleMain}</span>
+                <span className="inline text-slate-300">{displayTitleHighlight}</span>
+              </h1>
+            );
+          })()}
         </motion.div>
 
         {/* 8 Systems Pills Grid / Buttons - Placed After Title */}

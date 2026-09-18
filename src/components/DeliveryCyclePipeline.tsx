@@ -30,9 +30,9 @@ export interface CyclePhaseItem {
 
 export const DEFAULT_CYCLE_PHASES: CyclePhaseItem[] = [
   {
-    id: 'policy-economics',
+    id: 'phase-name',
     stepNumber: '01',
-    phaseLabel: 'DIAGNOSE & MODEL',
+    phaseLabel: 'NAME',
     name: 'Name',
     problemSentence: 'We need to understand the problem and choose a defensible course of action.',
     clientsHireFor:
@@ -46,14 +46,14 @@ export const DEFAULT_CYCLE_PHASES: CyclePhaseItem[] = [
     capabilitiesLine:
       'Dynamic DSGE Modeling · Sovereign Debt Audits · Tariff Optimization · Regulatory Impact Assessments (RIA)',
     exploreSlug: 'economic',
-    accentColor: '#ff7e67',
-    glowColor: 'rgba(255, 126, 103, 0.25)',
+    accentColor: '#ff7a65',
+    glowColor: 'rgba(255, 122, 101, 0.25)',
     icon: TrendingUp,
   },
   {
-    id: 'program-design',
+    id: 'phase-problem-sentence',
     stepNumber: '02',
-    phaseLabel: 'STRUCTURE & FEASIBILITY',
+    phaseLabel: 'PROBLEM SENTENCE',
     name: 'problem sentence',
     problemSentence: 'We have a mandate or funding window but need an implementable program.',
     clientsHireFor:
@@ -67,14 +67,14 @@ export const DEFAULT_CYCLE_PHASES: CyclePhaseItem[] = [
     capabilitiesLine:
       'Pre-Feasibility Dossiers · Theory of Change Blueprints · Results Frameworks · Risk Mitigation Architecture',
     exploreSlug: 'design',
-    accentColor: '#38d9c0',
-    glowColor: 'rgba(56, 217, 192, 0.25)',
+    accentColor: '#ff7a65',
+    glowColor: 'rgba(255, 122, 101, 0.25)',
     icon: ClipboardCheck,
   },
   {
-    id: 'development-finance',
+    id: 'phase-clients-hire',
     stepNumber: '03',
-    phaseLabel: 'CAPITAL & BANKABILITY',
+    phaseLabel: 'CLIENTS HIRE',
     name: 'Clients hire IP3 for',
     problemSentence: 'Public funding is insufficient; how do we make this investable?',
     clientsHireFor:
@@ -88,14 +88,14 @@ export const DEFAULT_CYCLE_PHASES: CyclePhaseItem[] = [
     capabilitiesLine:
       'Blended Finance Facilities · Sovereign Green Bonds · Risk-Sharing Guarantees · ESG Investment Cases',
     exploreSlug: 'climate',
-    accentColor: '#38bdf8',
-    glowColor: 'rgba(56, 189, 248, 0.25)',
+    accentColor: '#ff7a65',
+    glowColor: 'rgba(255, 122, 101, 0.25)',
     icon: Landmark,
   },
   {
-    id: 'institutions-governance',
+    id: 'phase-capabilities-line',
     stepNumber: '04',
-    phaseLabel: 'INSTITUTIONAL REFORM',
+    phaseLabel: 'CAPABILITIES LINE',
     name: 'capabilities line',
     problemSentence: 'A policy exists, but institutions cannot implement it consistently.',
     clientsHireFor:
@@ -109,14 +109,14 @@ export const DEFAULT_CYCLE_PHASES: CyclePhaseItem[] = [
     capabilitiesLine:
       'Ministerial War-Rooms · Civil Service Competency Frameworks · PFM Modernization · Delivery Unit Charters',
     exploreSlug: 'capacity-building',
-    accentColor: '#f59e0b',
-    glowColor: 'rgba(245, 158, 11, 0.25)',
+    accentColor: '#ff7a65',
+    glowColor: 'rgba(255, 122, 101, 0.25)',
     icon: Building2,
   },
   {
-    id: 'mel-impact',
+    id: 'phase-explore-work',
     stepNumber: '05',
-    phaseLabel: 'EVIDENCE & ATTRIBUTION',
+    phaseLabel: 'EXPLORE OUR WORK',
     name: 'Explore our work',
     problemSentence: 'We need to know what is working, why, for whom, and whether it can scale.',
     clientsHireFor:
@@ -130,17 +130,17 @@ export const DEFAULT_CYCLE_PHASES: CyclePhaseItem[] = [
     capabilitiesLine:
       'Quasi-Experimental RCTs · Real-Time Telemetry Pipelines · Causal Attribution · Adaptive Learning Loops',
     exploreSlug: 'merla',
-    accentColor: '#2dd4bf',
-    glowColor: 'rgba(45, 212, 191, 0.25)',
+    accentColor: '#ff7a65',
+    glowColor: 'rgba(255, 122, 101, 0.25)',
     icon: BarChart3,
   },
   {
-    id: 'data-digital-ai',
+    id: 'phase-indexable-page',
     stepNumber: '06',
-    phaseLabel: 'DIGITAL & SCALE',
+    phaseLabel: 'INDEXABLE PAGE',
     name: 'linking to a full indexable page, not a modal',
     problemSentence:
-      'We need to modernize systems without creating new governance, exclusion or accountability risks.',
+      'We link directly to a dedicated, search-indexable page architecture rather than an inline pop-up.',
     clientsHireFor:
       'DPI diagnostics, digital-government strategy, data governance, interoperability, AI readiness and governance, service design, digital inclusion.',
     deliverablesList: [
@@ -151,9 +151,9 @@ export const DEFAULT_CYCLE_PHASES: CyclePhaseItem[] = [
     ],
     capabilitiesLine:
       'Civic Tech Infrastructure · Zero-Trust Citizen Identity · Automated Tax Platforms · Algorithmic Risk Audits',
-    exploreSlug: 'digital-systems',
-    accentColor: '#a855f7',
-    glowColor: 'rgba(168, 85, 247, 0.25)',
+    exploreSlug: 'services',
+    accentColor: '#ff7a65',
+    glowColor: 'rgba(255, 122, 101, 0.25)',
     icon: Cpu,
   },
 ];
@@ -196,11 +196,11 @@ export const DeliveryCyclePipeline: React.FC<DeliveryCyclePipelineProps> = ({
   return (
     <div className={`w-full max-w-7xl mx-auto space-y-8 select-none ${className}`}>
       {/* ======================================================== */}
-      {/* 6-NODE PIPELINE SCHEMATIC (The exact selected component) */}
+      {/* 6-NODE PIPELINE SCHEMATIC (Matches image layout & styling) */}
       {/* ======================================================== */}
-      <div className="relative w-full rounded-2xl sm:rounded-3xl bg-[#081220]/90 backdrop-blur-md border border-slate-800/90 p-3 sm:p-5 lg:p-6 shadow-2xl">
+      <div className="relative w-full rounded-[24px] sm:rounded-[28px] bg-[#070e1b] border border-[#132238] p-5 sm:p-7 md:p-8 shadow-2xl">
         <div
-          className="w-full grid grid-cols-2 sm:grid-cols-3 lg:flex lg:items-stretch lg:justify-between gap-2 lg:gap-1.5"
+          className="w-full flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-2 lg:gap-3"
           role="tablist"
           aria-label="Delivery Cycle Phases"
         >
@@ -211,27 +211,35 @@ export const DeliveryCyclePipeline: React.FC<DeliveryCyclePipelineProps> = ({
             return (
               <React.Fragment key={phase.id}>
                 {/* Node Box Button */}
-                <div className="flex-1 min-w-0 flex">
+                <div className="flex-1 min-w-0 flex w-full">
                   <button
                     type="button"
-                    onClick={() => handleSelectPhase(idx)}
+                    onClick={() => {
+                      handleSelectPhase(idx);
+                      if (idx === 5) {
+                        handleExplore(phase.exploreSlug);
+                      }
+                    }}
                     id={`linked-list-node-btn-${idx}`}
                     role="tab"
                     aria-selected={isSelected}
                     aria-controls={`phase-card-panel-${phase.id}`}
-                    className={`w-full relative flex items-center justify-center p-3 sm:p-3.5 min-h-[58px] sm:min-h-[66px] h-full rounded-xl border transition-all duration-200 cursor-pointer text-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
+                    className={`w-full relative flex items-center justify-center p-3 sm:p-4 min-h-[88px] sm:min-h-[105px] md:min-h-[120px] rounded-2xl border transition-all duration-200 cursor-pointer text-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
                       isSelected
-                        ? 'border-white/50 bg-slate-800/95 shadow-lg ring-1 ring-white/20 scale-[1.01]'
-                        : 'border-slate-800/90 hover:border-slate-700 bg-[#050a12]/85 hover:bg-slate-900/70'
+                        ? 'border-[1.5px] border-[#ff7a65] bg-[#0e1b2e] ring-1 ring-[#ff7a65]/40 scale-[1.01]'
+                        : 'border-[#15233a] hover:border-slate-700 bg-[#071120] hover:bg-[#0b172a]'
                     }`}
                     style={{
-                      borderColor: isSelected ? phase.accentColor : undefined,
-                      boxShadow: isSelected ? `0 0 24px ${phase.glowColor}` : undefined,
+                      boxShadow: isSelected
+                        ? '0 0 24px rgba(255, 122, 101, 0.24), inset 0 1px 1px rgba(255, 255, 255, 0.08)'
+                        : '0 2px 8px rgba(0, 0, 0, 0.2)',
                     }}
                   >
                     <span
-                      className={`block text-xs sm:text-[13px] font-semibold tracking-tight transition-colors leading-snug line-clamp-3 ${
-                        isSelected ? 'text-white' : 'text-slate-200 group-hover:text-white'
+                      className={`block text-xs sm:text-[13px] md:text-[14px] font-medium transition-colors leading-snug px-1.5 max-w-[155px] ${
+                        isSelected
+                          ? 'text-white font-semibold text-sm sm:text-[15px] md:text-[16px]'
+                          : 'text-white group-hover:text-white'
                       }`}
                       title={phase.name}
                     >
@@ -240,20 +248,39 @@ export const DeliveryCyclePipeline: React.FC<DeliveryCyclePipelineProps> = ({
                   </button>
                 </div>
 
-                {/* Connecting SVG Flow Arrow (Desktop) */}
+                {/* Connecting Arrow - Slender flow arrow between cards */}
                 {!isLast && (
                   <div
-                    className="hidden lg:flex shrink-0 items-center justify-center px-0.5 text-slate-600 select-none"
+                    className="flex shrink-0 items-center justify-center py-1 md:py-0 px-1 text-slate-500 select-none"
                     aria-hidden="true"
                   >
-                    <svg width="16" height="16" viewBox="0 0 24 16" fill="none" className="w-4 h-4">
-                      <line x1="2" y1="8" x2="16" y2="8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                      <polyline
-                        points="12,4 18,8 12,12"
-                        stroke="currentColor"
-                        strokeWidth="2"
+                    {/* Horizontal Right Arrow for tablet/desktop */}
+                    <svg
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      className="hidden md:block w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#4a586d]"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                    >
+                      <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
+                        d="M3.5 10h12m-4-4l4 4-4 4"
+                      />
+                    </svg>
+
+                    {/* Vertical Downward Arrow for mobile screens */}
+                    <svg
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      className="block md:hidden w-3.5 h-3.5 text-[#4a586d]"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M10 3.5v12m-4-4l4 4 4-4"
                       />
                     </svg>
                   </div>
