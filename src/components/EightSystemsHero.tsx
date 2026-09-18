@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { SystemItem } from '../types';
+import { DeliveryCyclePipelineSection } from './DeliveryCyclePipelineSection';
 
 interface EightSystemsHeroProps {
   systems: SystemItem[];
@@ -166,6 +167,9 @@ export const EightSystemsHero: React.FC<EightSystemsHeroProps> = ({
           </div>
         </motion.div>
       </div>
+
+      {/* Delivery Cycle Pipeline Section placed directly after selected header/pills div */}
+      <DeliveryCyclePipelineSection />
     </div>
   );
 };

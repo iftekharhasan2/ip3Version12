@@ -273,44 +273,12 @@ export const PolySolutionsSection: React.FC<PolySolutionsSectionProps> = ({
           ref={masterCardRef}
           className="container-fluid w-full max-w-full bg-transparent border-0 rounded-none p-0 flex flex-col relative shadow-none"
         >
-          {/* Active Story Layout: Left Sticky Navigation & Natural Page Content */}
+          {/* Active Story Layout: Natural Page Content */}
           <div
             id="active-story-scene-card"
-            className="w-full grid grid-cols-1 md:grid-cols-[220px_1fr] lg:grid-cols-[240px_1fr] gap-8 lg:gap-12 items-start"
+            className="w-full flex flex-col items-start"
           >
-            {/* Left Column: Sticky Navigation & Thematic Horizon Selector */}
-            <div
-              className="w-full md:w-[220px] lg:w-[240px] md:sticky md:top-24 md:self-start flex flex-col gap-3.5 pb-6 md:pb-0 pr-0 md:pr-6 border-b md:border-b-0 md:border-r border-slate-800/80 shrink-0 z-20"
-              style={{ position: 'sticky', top: '96px', alignSelf: 'flex-start' }}
-            >
-              {/* Vertical Horizon Selector Stack */}
-              <div className="flex flex-col gap-2 w-full">
-                {themes.map((theme, idx) => {
-                  const isActive = activeIndex === idx;
-
-                  return (
-                    <button
-                      key={theme.id || `theme-${idx}`}
-                      id={`btn-theme-${idx + 1}`}
-                      onClick={() => handleSelectTheme(idx)}
-                      className={`w-full text-left px-3.5 py-3 rounded-xl transition-all duration-200 border relative select-none cursor-pointer ${
-                        isActive
-                          ? 'bg-[#ea6955] text-slate-950 font-bold border-[#ea6955] shadow-md shadow-[#ea6955]/15'
-                          : 'bg-[#0e1726]/80 hover:bg-[#152338] text-slate-300 border-slate-800/80 hover:border-slate-700 hover:text-white font-medium'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="text-[18px] sm:text-[20px] leading-snug block font-serif">
-                          {theme.title}
-                        </span>
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Right Column: All 4 Thematic Horizons rendered naturally in page stream */}
+            {/* Thematic Horizons rendered naturally in page stream */}
             <div
               id="active-theme-scroll-pane"
               className="w-full min-w-0 flex flex-col space-y-20 sm:space-y-28"
@@ -320,7 +288,9 @@ export const PolySolutionsSection: React.FC<PolySolutionsSectionProps> = ({
                   key={theme.id}
                   id={`theme-horizon-${idx + 1}`}
                   data-theme-index={idx}
-                  className="theme-horizon-block w-full flex flex-col space-y-6 sm:space-y-8 pt-2 pb-14 sm:pb-20 border-b border-slate-800/60 last:border-b-0"
+                  className={`theme-horizon-block w-full flex flex-col space-y-6 sm:space-y-8 pt-2 pb-14 sm:pb-20 ${
+                    idx === 0 ? 'border-b-0' : 'border-b border-slate-800/60'
+                  } last:border-b-0`}
                 >
                   {/* Horizon Header */}
                   <div className={`flex flex-col space-y-3 ${idx === 0 || idx === 1 ? 'w-full max-w-none' : 'max-w-4xl'}`}>

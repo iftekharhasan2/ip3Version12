@@ -7,6 +7,7 @@ import { OrbitalSystem } from './OrbitalSystem';
 import { NodeInspectorModal } from './NodeInspectorModal';
 import { ConsultationModal } from './ConsultationModal';
 import { PolySolutionsSection } from './PolySolutionsSection';
+import { OrbitalSystemCloneSection } from './OrbitalSystemCloneSection';
 import { SystemNodeId } from '../data/systemsData';
 
 export const SystemsArchitectureSection: React.FC = () => {
@@ -393,6 +394,9 @@ export const SystemsArchitectureSection: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Orbital System (Built for Complexity) Section */}
+      <OrbitalSystemCloneSection />
 
       {/* Unified Poly-Solutions Architecture & Eight Systems Master Section */}
       <PolySolutionsSection
