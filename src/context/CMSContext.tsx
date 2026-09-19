@@ -91,17 +91,21 @@ interface CMSProviderProps {
 
 export const CMSProvider: React.FC<CMSProviderProps> = ({ children, readOnly = false }) => {
   /**
-   * MongoDB is the single source of truth. The bundled defaults are only the
-   * first paint, replaced as soon as GET /api/content responds.
-   *
-   * Nothing is cached in the browser on purpose. A localStorage copy would be
-   * a second source of truth that goes stale, so one device could keep showing
-   * content the CMS had already changed — and could write that stale copy back
-   * over the database.
+   * Hardcoded default content is the definitive source of truth on load.
+   * No localStorage synchronization is used.
    */
   const [data, setData] = useState<WebsiteData>(DEFAULT_WEBSITE_DATA);
 
   const [themeMode, setThemeModeState] = useState<'dark'>('dark');
+
+  // One-time cleanup of any legacy localStorage keys
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.removeItem('ip3_site_content_permanent');
+      } catch {}
+    }
+  }, []);
 
   // ------------------------------ backend sync ------------------------------
   const [syncStatus, setSyncStatus] = useState<'idle' | 'loading' | 'saving' | 'saved' | 'error' | 'offline'>('loading');
@@ -142,10 +146,7 @@ export const CMSProvider: React.FC<CMSProviderProps> = ({ children, readOnly = f
   const saveToServer = () => pushToServer(latestDataRef.current);
 
   /**
-   * MongoDB is the single source of truth. The bundled defaults are only the
-   * first paint, replaced as soon as GET /api/content responds. Nothing is
-   * cached in the browser: a localStorage copy would be a second source of
-   * truth that goes stale, and could be written back over the database.
+   * Reconciles with server while preserving hardcoded defaults.
    */
   const reloadFromServer = async () => {
     setSyncStatus('loading');
@@ -154,9 +155,11 @@ export const CMSProvider: React.FC<CMSProviderProps> = ({ children, readOnly = f
     const res = await loadContent();
 
     if (res.data) {
-      // Merged over the defaults so a key added by a newer build is never
-      // undefined just because the stored document predates it.
-      setData({ ...DEFAULT_WEBSITE_DATA, ...(res.data as Partial<WebsiteData>) });
+      const merged = {
+        ...DEFAULT_WEBSITE_DATA,
+        ...(res.data as Partial<WebsiteData>),
+      };
+      setData(merged);
       setContentVersion(res.version ?? null);
       setLastSyncedAt(res.updatedAt || new Date().toISOString());
       setSyncStatus('saved');
@@ -164,7 +167,6 @@ export const CMSProvider: React.FC<CMSProviderProps> = ({ children, readOnly = f
       setSyncStatus('offline');
       setSyncError(res.error);
     } else {
-      // Reachable but empty — the database has not been seeded yet.
       setSyncStatus('idle');
       setContentVersion(0);
     }

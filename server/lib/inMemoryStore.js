@@ -1,7 +1,13 @@
+import fs from 'fs';
+import path from 'path';
+
 /**
  * In-memory fallback store when MongoDB is not configured or offline.
- * Provides ephemeral persistence during local testing / AI Studio preview.
+ * Provides durable local file persistence during local testing / AI Studio preview.
  */
+
+const STORE_DIR = path.join(process.cwd(), 'data');
+const STORE_FILE = path.join(STORE_DIR, 'content_store.json');
 
 export const inMemoryStore = {
   content: null,
@@ -10,6 +16,19 @@ export const inMemoryStore = {
   bookings: [],
   media: [],
 };
+
+// Initialize content from disk if previously saved
+try {
+  if (fs.existsSync(STORE_FILE)) {
+    const raw = fs.readFileSync(STORE_FILE, 'utf-8');
+    const parsed = JSON.parse(raw);
+    if (parsed && parsed.data) {
+      inMemoryStore.content = parsed;
+    }
+  }
+} catch (err) {
+  console.warn('[store] Could not read content_store.json:', err.message);
+}
 
 let nextLeadId = 1;
 let nextBookingId = 1;
@@ -43,6 +62,15 @@ export function setInMemoryContent(data, updatedBy = 'admin', note = '') {
   inMemoryStore.revisions.unshift(revision);
   if (inMemoryStore.revisions.length > 30) {
     inMemoryStore.revisions.pop();
+  }
+
+  try {
+    if (!fs.existsSync(STORE_DIR)) {
+      fs.mkdirSync(STORE_DIR, { recursive: true });
+    }
+    fs.writeFileSync(STORE_FILE, JSON.stringify(inMemoryStore.content, null, 2), 'utf-8');
+  } catch (err) {
+    console.warn('[store] Could not write to content_store.json:', err.message);
   }
 
   return inMemoryStore.content;

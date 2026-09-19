@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Layers } from 'lucide-react';
-import { useCMS } from '../context/CMSContext';
-import { defaultSystemsHero } from '../data/defaultContent';
 import { OrbitalSystem } from './OrbitalSystem';
 import { NodeInspectorModal } from './NodeInspectorModal';
 import { ConsultationModal } from './ConsultationModal';
@@ -11,15 +9,6 @@ import { OrbitalSystemCloneSection } from './OrbitalSystemCloneSection';
 import { SystemNodeId } from '../data/systemsData';
 
 export const SystemsArchitectureSection: React.FC = () => {
-  const { data } = useCMS();
-  const hero = data.systemsHero || defaultSystemsHero;
-  const prefix = hero.titlePrefix === 'Turning complex policy challenges'
-    ? 'Turning complex policy challenges into'
-    : (hero.titlePrefix || 'Turning complex policy challenges into');
-  const highlight = prefix.trim().endsWith('into') && hero.titleHighlight?.trim().startsWith('into ')
-    ? hero.titleHighlight.trim().slice(5)
-    : hero.titleHighlight;
-
   const [selectedStoryNodeId, setSelectedStoryNodeId] = useState<SystemNodeId | null>(null);
   const [inspectedNodeId, setInspectedNodeId] = useState<SystemNodeId | null>(null);
   const [activeStoryThemeIndex, setActiveStoryThemeIndex] = useState<number>(0);
@@ -74,7 +63,10 @@ export const SystemsArchitectureSection: React.FC = () => {
       >
         <div className="flex flex-col items-center w-full my-auto py-4">
           {/* Header Block: Headline & Narrative */}
-          <div className="flex flex-col items-center text-center max-w-[1500px] w-full mx-auto space-y-4 mb-8 sm:mb-12">
+          <div
+            id="systems-hero-header-block"
+            className="flex flex-col items-center text-center max-w-[1500px] w-full mx-auto space-y-4 mb-8 sm:mb-12"
+          >
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -82,32 +74,37 @@ export const SystemsArchitectureSection: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="flex items-center gap-2"
             >
-              <span className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.22em] text-[#38d9c0] uppercase">
-                {hero.badge}
+              <span
+                id="systems-hero-badge"
+                className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.22em] text-[#38d9c0] uppercase"
+              >
+                POLICY • ECONOMICS • DEVELOPMENT FINANCE • IMPLEMENTATION
               </span>
             </motion.div>
 
             <motion.h2
+              id="systems-hero-headline"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.1 }}
               className="font-serif text-[49px] font-bold text-white tracking-normal sm:tracking-tight leading-snug sm:leading-[1.2] md:leading-[1.25] py-1.5 overflow-visible w-[1500px] max-w-full"
             >
-              <span className="w-auto text-[54px] inline-block">{prefix}</span>{' '}
+              <span className="w-auto text-[54px] inline-block">Turning complex policy challenges into</span>{' '}
               <span className="italic font-normal text-[#ff7e67] tracking-normal inline-block">
-                {highlight}
+                implementable, investable solutions.
               </span>
             </motion.h2>
 
             <motion.p
+              id="systems-hero-description"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}
               className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl pt-1 font-normal"
             >
-              {hero.description}
+              IP3 Consulting Limited is a policy and development advisory firm helping multilateral institutions, development partners, governments, businesses and research organizations design better policies, mobilize investment, strengthen institutions and deliver measurable results.
             </motion.p>
 
             {/* Action Buttons */}

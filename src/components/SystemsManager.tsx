@@ -18,12 +18,14 @@ import {
   Eye,
 } from 'lucide-react';
 import { useCMS, defaultEightSystemsConfig } from '../context/CMSContext';
+import { defaultSystemsHero } from '../data/defaultContent';
 import { SystemItem, SystemMetric, SystemOverlap } from '../types';
 import { ImageField } from './ImageField';
 
 export const SystemsManager: React.FC = () => {
-  const { data, updateEightSystems } = useCMS();
+  const { data, updateEightSystems, updateSystemsHero } = useCMS();
   const config = data.eightSystems || defaultEightSystemsConfig;
+  const hero = data.systemsHero || defaultSystemsHero;
   const systems = config.systems && config.systems.length > 0 ? config.systems : defaultEightSystemsConfig.systems;
 
   const [expandedSystemId, setExpandedSystemId] = useState<string | null>(null);
@@ -33,6 +35,13 @@ export const SystemsManager: React.FC = () => {
   const showNotice = (msg: string) => {
     setNotice(msg);
     setTimeout(() => setNotice(null), 3000);
+  };
+
+  const handleUpdateHero = <K extends keyof typeof hero>(key: K, value: typeof hero[K]) => {
+    updateSystemsHero({
+      ...hero,
+      [key]: value,
+    });
   };
 
   const handleUpdateHeader = <K extends keyof typeof config>(key: K, value: typeof config[K]) => {
@@ -161,6 +170,63 @@ export const SystemsManager: React.FC = () => {
             <Plus className="w-4 h-4" />
             <span>Add System ({systems.length})</span>
           </button>
+        </div>
+      </div>
+
+      {/* Systems Architecture Hero Controls (#systems-hero) */}
+      <div className="p-4 bg-slate-950 border border-slate-800/80 rounded-2xl space-y-4">
+        <div className="flex items-center justify-between">
+          <h4 className="text-xs font-bold text-[#38d9c0] uppercase tracking-wider flex items-center gap-2">
+            <Sliders className="w-3.5 h-3.5" />
+            <span>Systems Architecture Hero Controls</span>
+          </h4>
+          <span className="text-[11px] font-mono text-slate-400">Section: #systems-hero</span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label className="block text-xs font-medium text-slate-300 mb-1.5">Hero Badge (Monospace)</label>
+            <input
+              type="text"
+              value={hero.badge}
+              onChange={(e) => handleUpdateHero('badge', e.target.value)}
+              className="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white focus:border-[#38d9c0] outline-none"
+              placeholder="POLICY • ECONOMICS • DEVELOPMENT FINANCE • IMPLEMENTATION"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-slate-300 mb-1.5">Headline Prefix</label>
+            <input
+              type="text"
+              value={hero.titlePrefix}
+              onChange={(e) => handleUpdateHero('titlePrefix', e.target.value)}
+              className="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white focus:border-[#38d9c0] outline-none"
+              placeholder="Turning complex policy challenges into"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-slate-300 mb-1.5">Headline Highlight (Coral)</label>
+            <input
+              type="text"
+              value={hero.titleHighlight}
+              onChange={(e) => handleUpdateHero('titleHighlight', e.target.value)}
+              className="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white focus:border-[#38d9c0] outline-none"
+              placeholder="implementable, investable solutions."
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-xs font-medium text-slate-300 mb-1.5">Hero Narrative Description</label>
+          <textarea
+            rows={2}
+            value={hero.description}
+            onChange={(e) => handleUpdateHero('description', e.target.value)}
+            className="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white focus:border-[#38d9c0] outline-none resize-none"
+            placeholder="IP3 Consulting Limited is a policy and development advisory firm..."
+          />
         </div>
       </div>
 
