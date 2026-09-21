@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   TrendingUp,
   ClipboardCheck,
@@ -177,6 +177,26 @@ export const DeliveryCyclePipeline: React.FC<DeliveryCyclePipelineProps> = ({
 }) => {
   const [activeIndex, setActiveIndex] = useState<number>(defaultActiveIndex);
   const activePhase = phases[activeIndex] || phases[0];
+
+  const onPhaseChangeRef = useRef(onPhaseChange);
+  useEffect(() => {
+    onPhaseChangeRef.current = onPhaseChange;
+  }, [onPhaseChange]);
+
+  useEffect(() => {
+    if (phases.length <= 1) return;
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => {
+        const next = (prev + 1) % phases.length;
+        if (onPhaseChangeRef.current) {
+          onPhaseChangeRef.current(phases[next], next);
+        }
+        return next;
+      });
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [phases]);
 
   const handleSelectPhase = (index: number) => {
     setActiveIndex(index);

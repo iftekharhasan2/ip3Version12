@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   TrendingUp,
   ClipboardCheck,
@@ -159,6 +159,14 @@ interface IP3DeliveryCycleSectionProps {
 
 export const IP3DeliveryCycleSection: React.FC<IP3DeliveryCycleSectionProps> = ({ onNavigate }) => {
   const [activeCardIndex, setActiveCardIndex] = useState<number>(0);
+
+  useEffect(() => {
+    if (CYCLE_CARDS_DATA.length <= 1) return;
+    const interval = setInterval(() => {
+      setActiveCardIndex((prev) => (prev + 1) % CYCLE_CARDS_DATA.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   const activeCard = CYCLE_CARDS_DATA[activeCardIndex];
 
