@@ -536,6 +536,34 @@ export interface EightSystemsConfig {
   systems: SystemItem[];
 }
 
+export interface EngagementMetric {
+  label: string;
+  value: string;
+  context?: string;
+}
+
+export interface Engagement {
+  id: string;
+  title: string;
+  subtitle: string;
+  summary: string;
+  badgeLabel: string;
+  badgeColor?: string;
+  clientType: string;
+  sector: string;
+  region: string;
+  completionYear: string;
+  capitalValue?: string;
+  imageUrl: string;
+  challenge: string;
+  ip3Role: string;
+  deliverables: string[];
+  result: string;
+  verificationSource: string;
+  capabilityTags: string[];
+  metrics?: EngagementMetric[];
+}
+
 
 
 

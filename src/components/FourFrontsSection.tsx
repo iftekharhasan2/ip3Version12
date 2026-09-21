@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ParallaxCardsSection } from './ParallaxCardsSection';
 import { useCMS } from '../context/CMSContext';
+import ResearchSlotsSection from './ResearchSlotsSection';
 
 export interface FourFrontsSectionProps {
   embedded?: boolean;
@@ -72,6 +73,9 @@ export const FourFrontsSection: React.FC<FourFrontsSectionProps> = ({ embedded =
               </h1>
             </div>
           )}
+
+          {/* Research & Working Papers Pipeline (Formatted like sector-systems-items-container) */}
+          <ResearchSlotsSection />
 
           {/* Publications & Knowledge Matrix Card */}
           <div 

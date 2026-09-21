@@ -54,7 +54,7 @@ export const ConveningSection: React.FC<ConveningSectionProps> = ({ embedded = f
           <div className="lg:col-span-5 flex flex-col justify-center z-20">
             <div className="mb-2">
               <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#ff7e67] font-semibold">
-                NEUTRAL CONVENING ECOSYSTEM
+                CONNECTING POLICY, CAPITAL AND IMPLEMENTATION
               </span>
             </div>
 

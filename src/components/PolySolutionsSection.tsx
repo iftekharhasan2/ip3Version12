@@ -8,6 +8,7 @@ import { MethodologyTranslationSection } from './MethodologyTranslationSection';
 import { ProjectsSection } from './ProjectsSection';
 import { FourFrontsSection } from './FourFrontsSection';
 import { ConveningSection } from './ConveningSection';
+import ConveningModalitiesCard from './ConveningModalitiesCard';
 import { TrustMatrixMarquee } from './TrustMatrixMarquee';
 import { TestimonialCard } from './TestimonialCard';
 
@@ -86,13 +87,13 @@ export const STATIC_STORY_THEMES: StoryTheme[] = [
   {
     id: 'thinking',
     themeNumber: 'THEME 03',
-    title: 'Thinking that Shifts',
+    title: 'Research that changes decisions.',
     icon: 'sparkles',
     badge: 'THEME 03 • ACTIVE SCENE',
-    category: 'Cognitive & Paradigm Transitions',
-    headline: 'Thinking that Shifts',
+    category: 'Evidence & Insights',
+    headline: 'Research that changes decisions.',
     quote:
-      '"Linear solutions cannot cure non-linear failures. We rewire institutional decision models for exponential complexity."',
+      'Thinking that ships how institutions diagnose, finance and deliver.',
     cards: [
       {
         tag: '01 / DYNAMICS',
@@ -123,10 +124,10 @@ export const STATIC_STORY_THEMES: StoryTheme[] = [
     title: 'A Convener Between Worlds',
     icon: 'users',
     badge: 'THEME 04 • ACTIVE SCENE',
-    category: 'Multilateral Coalition Platform',
+    category: 'Connecting Policy, Capital and Implementation',
     headline: 'A Convener Between Worlds',
     quote:
-      '"Neutral ground for unlikely coalitions: unifying sovereigns, capital allocators, scientific innovators, and civic stewards."',
+      'Complex reforms fail when ministries, development institutions, researchers, investors and implementers are solving different versions of the same problem. IP3 designs evidence-led dialogue and decision processes that bring those perspectives together around practical pathways to action.',
     cards: [
       {
         tag: '01 / NEUTRALITY',
@@ -366,6 +367,10 @@ export const PolySolutionsSection: React.FC<PolySolutionsSectionProps> = ({
                           ? 'IP3 SECTOR EXPERTISE'
                           : idx === 1
                           ? 'FROM ANALYSIS TO IMPLEMENTATION'
+                          : idx === 2
+                          ? 'EVIDENCE & INSIGHTS'
+                          : idx === 3
+                          ? 'CONNECTING POLICY, CAPITAL AND IMPLEMENTATION'
                           : (theme.category || 'Whole-Systems Architecture').toUpperCase()}
                       </span>
                     </div>
@@ -384,16 +389,16 @@ export const PolySolutionsSection: React.FC<PolySolutionsSectionProps> = ({
                             }
                           : {}),
                         ...(idx === 1 ? { fontSize: '55px', width: '8960px', maxWidth: '100%' } : {}),
-                        ...(idx === 2 ? { fontSize: '65px', width: '600px', maxWidth: '100%' } : {}),
+                        ...(idx === 2 ? { fontSize: 'clamp(32px, 5vw, 65px)', maxWidth: '100%' } : {}),
                         ...(idx >= 3 ? { fontSize: '52px' } : {}),
                       }}
                     >
-                      {theme.headline}
+                      {idx === 2 ? 'Research that changes decisions.' : theme.headline}
                     </h3>
 
                     <p
                       className={`${
-                        idx === 0 || idx === 1
+                        idx <= 3
                           ? 'text-slate-300 text-base sm:text-lg lg:text-[19px]'
                           : 'font-serif italic text-slate-300/90 text-lg sm:text-xl lg:text-[22px]'
                       } font-normal leading-relaxed max-w-4xl`}
@@ -406,6 +411,10 @@ export const PolySolutionsSection: React.FC<PolySolutionsSectionProps> = ({
                           (theme.quote?.includes('Bridging the chasm') ||
                             !theme.quote?.includes('decisions institutions actually have to make'))
                         ? 'Our work is designed around the decisions institutions actually have to make: what to reform, what to finance, how to structure implementation, where risks sit, how results will be measured, and what evidence is needed to scale.'
+                        : idx === 2
+                        ? 'Thinking that ships how institutions diagnose, finance and deliver.'
+                        : idx === 3
+                        ? 'Complex reforms fail when ministries, development institutions, researchers, investors and implementers are solving different versions of the same problem. IP3 designs evidence-led dialogue and decision processes that bring those perspectives together around practical pathways to action.'
                         : theme.quote}
                     </p>
                   </div>
@@ -439,6 +448,9 @@ export const PolySolutionsSection: React.FC<PolySolutionsSectionProps> = ({
                   {theme.id === 'convener' && (
                     <div className="w-full space-y-10">
                       <ConveningSection embedded />
+
+                      {/* Convening Formats & Dialogue Platforms Card (Added before Strategic Partners & Client Ecosystem) */}
+                      <ConveningModalitiesCard />
 
                       <div className="w-full border-t border-slate-800/80 pt-8">
                         <TrustMatrixMarquee embedded />

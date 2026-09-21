@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useCMS } from '../context/CMSContext';
 import { PROJECTS } from '../data/policyData';
 import type { ProjectItem } from '../data/policyData';
+import OutputCategoriesList from './OutputCategories';
 import {
   SlidersHorizontal,
   Search,
@@ -85,9 +86,12 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ embedded = fal
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#ff7e67]/5 rounded-full blur-[140px] pointer-events-none" />
       )}
 
-      <div className={`${embedded ? 'w-full' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'} space-y-8 relative z-10`}>
+      <div className={`${embedded ? 'w-full' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'} space-y-10 relative z-10`}>
+        {/* Strategic Output Categories */}
+        <OutputCategoriesList embedded={embedded} />
+
         {/* Section Header */}
-        <div className={`${embedded ? 'text-left max-w-4xl' : 'text-center max-w-3xl mx-auto'} space-y-3`}>
+        <div className={`${embedded ? 'text-left max-w-4xl' : 'text-center max-w-3xl mx-auto'} space-y-3 pt-6 border-t border-slate-800/80`}>
           <div>
             <span className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.22em] text-[#ff7e67] uppercase">
               PROVEN ACTION RESEARCH PORTFOLIO

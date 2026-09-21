@@ -817,13 +817,13 @@ export const defaultStoryThemes: StoryTheme[] = [
   {
     id: 'thinking',
     themeNumber: 'THEME 03',
-    title: 'Thinking that Shifts',
+    title: 'Research that changes decisions.',
     icon: 'sparkles',
     badge: 'THEME 03 • ACTIVE SCENE',
-    category: 'Cognitive & Paradigm Transitions',
-    headline: 'Thinking that Shifts',
+    category: 'Evidence & Insights',
+    headline: 'Research that changes decisions.',
     quote:
-      '"Linear solutions cannot cure non-linear failures. We rewire institutional decision models for exponential complexity."',
+      'Thinking that ships how institutions diagnose, finance and deliver.',
     cards: [
       {
         tag: '01 / DYNAMICS',
@@ -854,10 +854,10 @@ export const defaultStoryThemes: StoryTheme[] = [
     title: 'A Convener Between Worlds',
     icon: 'users',
     badge: 'THEME 04 • ACTIVE SCENE',
-    category: 'Multilateral Coalition Platform',
+    category: 'Connecting Policy, Capital and Implementation',
     headline: 'A Convener Between Worlds',
     quote:
-      '"Neutral ground for unlikely coalitions: unifying sovereigns, capital allocators, scientific innovators, and civic stewards."',
+      'Complex reforms fail when ministries, development institutions, researchers, investors and implementers are solving different versions of the same problem. IP3 designs evidence-led dialogue and decision processes that bring those perspectives together around practical pathways to action.',
     cards: [
       {
         tag: '01 / NEUTRALITY',

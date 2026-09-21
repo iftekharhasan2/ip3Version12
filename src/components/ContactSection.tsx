@@ -28,16 +28,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialTab = 'me
 
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex items-center gap-2 mb-4">
-            <span className="h-0.5 w-6 bg-[#ff7e67]" />
-            <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#ff7e67]">
-              Advisory Intake & Consultation
+            <span className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.22em] text-[#38d9c0] uppercase">
+              Ready to work with IP3?
             </span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-100 mb-4">
-            Tell us what you are<br className="hidden sm:inline" /> trying to change
+            Tell us the mandate you need to deliver.
           </h1>
-          <p className="text-slate-400 text-sm sm:text-base max-w-2xl leading-relaxed font-normal">
-            Every submission is recorded against a reference number the moment we receive it, and reviewed by our team. We aim to respond within one business day.
+          <p className="text-slate-400 text-sm sm:text-base max-w-3xl leading-relaxed font-normal">
+            Whether you are preparing a new program, assessing an investment, designing a reform, commissioning an evaluation or assembling a consortium, IP3 can help define the analytical and implementation support required.
           </p>
         </div>
       </div>
