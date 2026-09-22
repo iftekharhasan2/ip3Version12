@@ -137,20 +137,26 @@ export const MobileNav: React.FC<MobileNavProps> = ({
           >
             {/* Drawer Header */}
             <div className="p-4 border-b border-slate-800 flex items-center justify-between bg-[#050a12]">
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center">
                 {navbar.brand.logoImage ? (
-                  <img src={navbar.brand.logoImage} alt={navbar.brand.name} className="w-8 h-8 rounded-lg object-cover shadow-md" />
+                  <img
+                    src={navbar.brand.logoImage}
+                    alt={navbar.brand.name || 'IP3 Agriscience'}
+                    className="h-8 sm:h-9 w-auto max-w-[210px] object-contain object-left"
+                  />
                 ) : (
-                  <div className="w-8 h-8 rounded-lg bg-[#ff7e67] flex items-center justify-center font-mono font-bold italic text-slate-950 text-xs shadow-md">
-                    {navbar.brand.badgeText}
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-lg bg-[#ff7e67] flex items-center justify-center font-mono font-bold italic text-slate-950 text-xs shadow-md">
+                      {navbar.brand.badgeText}
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="font-mono font-bold text-xs uppercase tracking-wider text-slate-100">
+                        {navbar.brand.name}
+                      </span>
+                      <span className="text-[10px] text-slate-400 font-mono">{navbar.brand.tagline}</span>
+                    </div>
                   </div>
                 )}
-                <div className="flex flex-col">
-                  <span className="font-mono font-bold text-xs uppercase tracking-wider text-slate-100">
-                    {navbar.brand.name}
-                  </span>
-                  <span className="text-[10px] text-slate-400 font-mono">{navbar.brand.tagline}</span>
-                </div>
               </div>
 
               <button

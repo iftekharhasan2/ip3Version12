@@ -200,36 +200,42 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }
               }}
             >
-              <span className={`_logo_19f3y_1 ${condensed ? '_compact_19f3y_26' : ''} flex items-center gap-2.5`}>
-                <div className="relative">
-                  {navbar.brand.logoImage ? (
-                    <img
-                      src={navbar.brand.logoImage}
-                      alt={navbar.brand.name}
-                      className="w-9 h-9 rounded-xl object-cover shadow-md shadow-[#ff7e67]/30 group-hover:scale-105 transition-transform"
-                    />
-                  ) : (
-                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#ff7e67] to-[#e05e47] flex items-center justify-center font-bold text-[#050a12] shadow-md shadow-[#ff7e67]/30 group-hover:scale-105 transition-transform">
-                      <span className="font-extrabold italic text-sm tracking-tighter">{navbar.brand.badgeText}</span>
+              <span className={`_logo_19f3y_1 ${condensed ? '_compact_19f3y_26' : ''} flex items-center`}>
+                {navbar.brand.logoImage ? (
+                  <img
+                    src={navbar.brand.logoImage}
+                    alt={navbar.brand.name || 'IP3 Agriscience'}
+                    className={`w-auto object-contain object-left transition-transform duration-200 group-hover:scale-[1.02] ${
+                      condensed
+                        ? 'h-9 sm:h-10 max-w-[210px] sm:max-w-[270px]'
+                        : 'h-10 sm:h-11 md:h-12 max-w-[240px] sm:max-w-[320px]'
+                    }`}
+                  />
+                ) : (
+                  <div className="flex items-center gap-2.5">
+                    <div className="relative">
+                      <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#ff7e67] to-[#e05e47] flex items-center justify-center font-bold text-[#050a12] shadow-md shadow-[#ff7e67]/30 group-hover:scale-105 transition-transform">
+                        <span className="font-extrabold italic text-sm tracking-tighter">{navbar.brand.badgeText}</span>
+                      </div>
+                      {navbar.brand.showStatusDot && (
+                        <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 rounded-full border-2 border-[#050a12]"></div>
+                      )}
                     </div>
-                  )}
-                  {navbar.brand.showStatusDot && (
-                    <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 rounded-full border-2 border-[#050a12]"></div>
-                  )}
-                </div>
 
-                <div className="flex flex-col">
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-extrabold text-sm sm:text-base tracking-tight uppercase text-slate-100 group-hover:text-[#ff7e67] transition-colors leading-none">
-                      {navbar.brand.name}
-                    </span>
+                    <div className="flex flex-col">
+                      <div className="flex items-center gap-1.5">
+                        <span className="font-extrabold text-sm sm:text-base tracking-tight uppercase text-slate-100 group-hover:text-[#ff7e67] transition-colors leading-none">
+                          {navbar.brand.name}
+                        </span>
+                      </div>
+                      {navbar.brand.tagline && (
+                        <span className="text-[10px] text-slate-400 tracking-normal font-medium leading-tight mt-0.5 hidden sm:inline-block">
+                          {navbar.brand.tagline}
+                        </span>
+                      )}
+                    </div>
                   </div>
-                  {navbar.brand.tagline && (
-                    <span className="text-[10px] text-slate-400 tracking-normal font-medium leading-tight mt-0.5 hidden sm:inline-block">
-                      {navbar.brand.tagline}
-                    </span>
-                  )}
-                </div>
+                )}
               </span>
             </a>
 

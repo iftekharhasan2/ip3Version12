@@ -166,8 +166,8 @@ export const defaultNavbarConfig: NavbarConfig = {
     badgeText: 'IP3',
     name: 'IP3 AGRISCIENCE',
     tagline: 'Precision Research Farm',
-    showStatusDot: true,
-    logoImage: '',
+    showStatusDot: false,
+    logoImage: '/images/ip3-logo.svg',
   },
   cta: {
     enabled: true,
