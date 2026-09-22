@@ -611,9 +611,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         </div>
       </div>
 
-      <main>
+      <main style={{ margin: '20px' }}>
         {/* ===================== HERO ===================== */}
-        <section className="hero wrap" aria-labelledby="pagetitle">
+        <section className="hero wrap" aria-labelledby="pagetitle" style={{ margin: '20px' }}>
           <div className="hero__inner">
             <p className="eyebrow reveal">About IP3 Consulting</p>
             <h1 id="pagetitle" className="reveal" data-d="1">
@@ -629,7 +629,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         </section>
 
         {/* Thesis Pathway */}
-        <div className="thesis wrap">
+        <div className="thesis wrap" style={{ margin: '20px' }}>
           <figure className="pathway reveal">
             <p className="eyebrow" style={{ marginBottom: '1.6rem' }}>The IP3 through-line</p>
             <svg viewBox="0 0 920 150" role="img" aria-label="IP3 operating thesis as a left-to-right pathway: Complexity leads to Intelligence, Intelligence to Architecture, Architecture to Implementation, and Implementation to Impact.">
@@ -671,7 +671,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
 
         {/* ===================== WHO WE ARE ===================== */}
         <section className="section" id="who" aria-labelledby="who-h">
-          <div className="wrap">
+          <div className="wrap" style={{ margin: '20px' }}>
             <div className="section__head reveal">
               <p className="eyebrow">01 // Who We Are</p>
               <h2 id="who-h">Translating policy intelligence into systems that work</h2>
