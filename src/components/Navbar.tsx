@@ -186,7 +186,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             
             {/* Brand Logo */}
             <a
-              className="_brand_aes6y_28 flex items-center gap-3 group cursor-pointer shrink-0"
+              className="_brand_aes6y_28 flex items-center self-stretch h-full py-0 group cursor-pointer shrink-0"
               href="#hero"
               aria-label="IP3 home"
               onClick={(e) => {
@@ -200,16 +200,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }
               }}
             >
-              <span className={`_logo_19f3y_1 ${condensed ? '_compact_19f3y_26' : ''} flex items-center`}>
+              <span className={`_logo_19f3y_1 ${condensed ? '_compact_19f3y_26' : ''} flex items-center self-stretch h-full py-0`}>
                 {navbar.brand.logoImage ? (
                   <img
                     src={navbar.brand.logoImage}
                     alt={navbar.brand.name || 'IP3 Agriscience'}
-                    className={`w-auto object-contain object-left transition-transform duration-200 group-hover:scale-[1.02] ${
-                      condensed
-                        ? 'h-9 sm:h-10 max-w-[210px] sm:max-w-[270px]'
-                        : 'h-10 sm:h-11 md:h-12 max-w-[240px] sm:max-w-[320px]'
-                    }`}
+                    className="h-full w-auto max-h-full object-contain object-left block transition-transform duration-200 group-hover:scale-[1.01]"
                   />
                 ) : (
                   <div className="flex items-center gap-2.5">
