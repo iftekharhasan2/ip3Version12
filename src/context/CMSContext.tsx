@@ -145,6 +145,46 @@ export const CMSProvider: React.FC<CMSProviderProps> = ({ children, readOnly = f
 
   const saveToServer = () => pushToServer(latestDataRef.current);
 
+  const sanitizeNav = (nav?: PrimaryNavItem[]): PrimaryNavItem[] | undefined => {
+    if (!nav || !Array.isArray(nav)) return nav;
+    return nav.map((item) => {
+      if (item.id === 'about' || item.id === 'services' || item.id === 'focus-areas') {
+        return { ...item, columns: [] };
+      }
+      const safeCols = (item.columns || []).filter((col) => {
+        const title = (col.title || '').toLowerCase().trim();
+        if (
+          title.includes('about sub-page') ||
+          title.includes('institutional governance') ||
+          title.includes('analytical & survey') ||
+          title.includes('analytical') ||
+          title.includes('advisory & systems')
+        ) return false;
+        const hasBannedLink = col.links?.some((l) => {
+          const lbl = (l.label || '').toLowerCase();
+          return (
+            lbl.includes('operating model') ||
+            lbl.includes('delivery lifecycle') ||
+            lbl.includes('global fellows') ||
+            lbl.includes('01. overview') ||
+            lbl.includes('02. ip3 people') ||
+            lbl.includes('03. approach') ||
+            lbl.includes('economic assessment') ||
+            lbl.includes('climate action') ||
+            lbl.includes('survey des') ||
+            lbl.includes('merla solutions') ||
+            lbl.includes('macro & sector') ||
+            lbl.includes('digital transformation') ||
+            lbl.includes('capacity buil') ||
+            lbl.includes('practice deliverables')
+          );
+        });
+        return !hasBannedLink;
+      });
+      return { ...item, columns: safeCols };
+    });
+  };
+
   /**
    * Reconciles with server while preserving hardcoded defaults.
    */
@@ -159,6 +199,9 @@ export const CMSProvider: React.FC<CMSProviderProps> = ({ children, readOnly = f
         ...DEFAULT_WEBSITE_DATA,
         ...(res.data as Partial<WebsiteData>),
       };
+      if (merged.navigation) {
+        merged.navigation = sanitizeNav(merged.navigation);
+      }
       setData(merged);
       setContentVersion(res.version ?? null);
       setLastSyncedAt(res.updatedAt || new Date().toISOString());
@@ -448,7 +491,8 @@ export const CMSProvider: React.FC<CMSProviderProps> = ({ children, readOnly = f
   };
 
   const updateNavigation = (navigation: PrimaryNavItem[]) => {
-    setData((prev) => ({ ...prev, navigation }));
+    const cleaned = sanitizeNav(navigation) || navigation;
+    setData((prev) => ({ ...prev, navigation: cleaned }));
   };
 
   const updateNavbar = (navbar: NavbarConfig) => {

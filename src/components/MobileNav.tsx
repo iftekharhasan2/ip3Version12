@@ -51,18 +51,43 @@ export const MobileNav: React.FC<MobileNavProps> = ({
         });
       }
 
-      const rawColumns = (item.columns && item.columns.length > 0) ? item.columns : (defaultAboutItem?.columns || []);
-      const columns = rawColumns.filter(
-        (c) => !c.title?.toLowerCase().includes('approach')
-      );
-
-      return { ...item, links, columns };
+      return { ...item, links, columns: [] };
     }
-    if (item.id === 'focus-areas') {
+    if (item.id === 'focus-areas' || item.id === 'services') {
       const base = (!item.links || item.links.length === 0) ? (defaultFocusItem || item) : item;
       return { ...base, columns: [] };
     }
-    return { ...item, columns: item.columns || [] };
+    const safeColumns = (item.columns || []).filter((col) => {
+      const title = (col.title || '').toLowerCase().trim();
+      if (
+        title.includes('about sub-page') ||
+        title.includes('institutional governance') ||
+        title.includes('analytical & survey') ||
+        title.includes('analytical') ||
+        title.includes('advisory & systems')
+      ) return false;
+      const hasBannedLink = col.links?.some((l) => {
+        const lbl = (l.label || '').toLowerCase();
+        return (
+          lbl.includes('operating model') ||
+          lbl.includes('delivery lifecycle') ||
+          lbl.includes('global fellows') ||
+          lbl.includes('01. overview') ||
+          lbl.includes('02. ip3 people') ||
+          lbl.includes('03. approach') ||
+          lbl.includes('economic assessment') ||
+          lbl.includes('climate action') ||
+          lbl.includes('survey des') ||
+          lbl.includes('merla solutions') ||
+          lbl.includes('macro & sector') ||
+          lbl.includes('digital transformation') ||
+          lbl.includes('capacity buil') ||
+          lbl.includes('practice deliverables')
+        );
+      });
+      return !hasBannedLink;
+    });
+    return { ...item, columns: safeColumns };
   });
   const navbar = {
     ...defaultNavbarConfig,

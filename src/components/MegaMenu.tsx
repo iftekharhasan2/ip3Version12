@@ -13,7 +13,44 @@ interface MegaMenuProps {
 export const MegaMenu: React.FC<MegaMenuProps> = ({ item, onClose, onNavigate }) => {
   const { data } = useCMS();
   const badge = data.navbar?.megaMenuBadge ?? defaultNavbarConfig.megaMenuBadge;
-  const hasColumns = Boolean(item.columns && item.columns.length > 0);
+
+  // Filter out unwanted columns like ABOUT SUB-PAGES, INSTITUTIONAL GOVERNANCE, ANALYTICAL & SURVEY PRACTICES, ADVISORY & SYSTEMS
+  const activeColumns = (
+    item.id === 'about' || item.id === 'services' || item.id === 'focus-areas'
+      ? []
+      : (item.columns || [])
+  ).filter((col) => {
+    const title = (col.title || '').toLowerCase().trim();
+    if (
+      title.includes('about sub-page') ||
+      title.includes('institutional governance') ||
+      title.includes('analytical & survey') ||
+      title.includes('analytical') ||
+      title.includes('advisory & systems')
+    ) return false;
+    const hasBannedLink = col.links?.some((l) => {
+      const lbl = (l.label || '').toLowerCase();
+      return (
+        lbl.includes('operating model') ||
+        lbl.includes('delivery lifecycle') ||
+        lbl.includes('global fellows') ||
+        lbl.includes('01. overview') ||
+        lbl.includes('02. ip3 people') ||
+        lbl.includes('03. approach') ||
+        lbl.includes('economic assessment') ||
+        lbl.includes('climate action') ||
+        lbl.includes('survey des') ||
+        lbl.includes('merla solutions') ||
+        lbl.includes('macro & sector') ||
+        lbl.includes('digital transformation') ||
+        lbl.includes('capacity buil') ||
+        lbl.includes('practice deliverables')
+      );
+    });
+    return !hasBannedLink;
+  });
+
+  const hasColumns = Boolean(activeColumns && activeColumns.length > 0);
   const hasPromos = Boolean(item.promos && item.promos.length > 0);
 
   let linksSpan = 'lg:col-span-4 border-r border-slate-800/80 pr-0 lg:pr-8';
@@ -119,7 +156,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ item, onClose, onNavigate })
           {/* Grouped Columns */}
           {hasColumns && (
             <div className={`${columnsSpan} grid grid-cols-1 sm:grid-cols-2 gap-6`}>
-              {item.columns.map((column, i) => (
+              {activeColumns.map((column, i) => (
                 <div key={column.title || `col-${i}`} className="space-y-3">
                   {column.title && (
                     <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 block pb-1 border-b border-slate-800/80">
