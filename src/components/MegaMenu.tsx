@@ -7,7 +7,7 @@ import { useCMS } from '../context/CMSContext';
 interface MegaMenuProps {
   item: PrimaryNavItem;
   onClose: () => void;
-  onNavigate?: (page: 'home' | 'about' | 'approach' | 'focus' | 'services', sectionId?: string) => void;
+  onNavigate?: (page: 'home' | 'about' | 'approach' | 'focus' | 'services' | 'people', sectionId?: string) => void;
 }
 
 export const MegaMenu: React.FC<MegaMenuProps> = ({ item, onClose, onNavigate }) => {
@@ -16,7 +16,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ item, onClose, onNavigate })
 
   // Filter out unwanted columns like ABOUT SUB-PAGES, INSTITUTIONAL GOVERNANCE, ANALYTICAL & SURVEY PRACTICES, ADVISORY & SYSTEMS
   const activeColumns = (
-    item.id === 'about' || item.id === 'services' || item.id === 'focus-areas'
+    item.id === 'about' || item.id === 'services' || item.id === 'focus-areas' || item.id === 'approach'
       ? []
       : (item.columns || [])
   ).filter((col) => {
@@ -67,7 +67,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ item, onClose, onNavigate })
     linksSpan = 'lg:col-span-12';
   }
 
-  const handleLinkClick = (e: React.MouseEvent, href: string, sectionId?: string, page?: 'home' | 'about' | 'approach' | 'focus' | 'services') => {
+  const handleLinkClick = (e: React.MouseEvent, href: string, sectionId?: string, page?: 'home' | 'about' | 'approach' | 'focus' | 'services' | 'people') => {
     e.preventDefault();
     onClose();
 
@@ -86,6 +86,9 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ item, onClose, onNavigate })
         targetSection = href.includes('#') ? href.slice(href.indexOf('#')) : '#services';
       } else if (href.startsWith('/approach')) {
         targetPage = 'approach';
+        targetSection = href.includes('#') ? href.slice(href.indexOf('#')) : undefined;
+      } else if (href.startsWith('/people')) {
+        targetPage = 'people';
         targetSection = href.includes('#') ? href.slice(href.indexOf('#')) : undefined;
       }
     }

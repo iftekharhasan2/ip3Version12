@@ -10,7 +10,7 @@ export interface NavLinkItem {
   href: string;
   sectionId?: string;
   desc?: string;
-  page?: 'home' | 'about' | 'approach' | 'focus' | 'services';
+  page?: 'home' | 'about' | 'approach' | 'focus' | 'services' | 'people';
 }
 
 export interface NavColumnItem {
@@ -23,7 +23,7 @@ export interface PrimaryNavItem {
   label: string;
   href: string;
   sectionId: string;
-  page?: 'home' | 'about' | 'approach' | 'focus' | 'services';
+  page?: 'home' | 'about' | 'approach' | 'focus' | 'services' | 'people';
   links: NavLinkItem[];
   columns: NavColumnItem[];
   promos: NavPromoItem[];
@@ -38,8 +38,7 @@ export const primaryNav: PrimaryNavItem[] = [
     page: 'about',
     links: [
       { label: 'Overview', href: '/about#overview', sectionId: '#overview', page: 'about', desc: 'Mission, institutional heritage, ecosystem & four strategic fronts' },
-      { label: 'IP3 People', href: '/about#people', sectionId: '#people', page: 'about', desc: 'Global faculty of economists, researchers, fellows & executive leadership' },
-      { label: 'Our Approach (Sub-Page)', href: '/approach', sectionId: '#journey', page: 'approach', desc: 'Six movements of reform from diagnosis to durable institutional capability' },
+      { label: 'IP3 People', href: '/people', sectionId: '#faculty', page: 'people', desc: 'Global faculty of economists, researchers, fellows & executive leadership' },
     ],
     columns: [],
     promos: [
@@ -47,15 +46,25 @@ export const primaryNav: PrimaryNavItem[] = [
         eyebrow: 'IP3 PEOPLE',
         title: 'Meet our global faculty of economists, researchers, and policy practitioners',
         image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
-        href: '/about#people',
+        href: '/people',
       },
       {
-        eyebrow: 'OUR APPROACH SUB-PAGE',
-        title: 'Reform as a Movement: Six movements from diagnosis to durable institutional capability',
-        image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800',
-        href: '/approach',
+        eyebrow: 'INSTITUTIONAL HERITAGE',
+        title: 'Decades of systemic advisory across sovereign institutions and global partners',
+        image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800',
+        href: '/about#overview',
       },
     ],
+  },
+  {
+    id: 'approach',
+    label: 'Our Approach',
+    href: '/approach',
+    sectionId: '#journey',
+    page: 'approach',
+    links: [],
+    columns: [],
+    promos: [],
   },
   {
     id: 'focus-areas',
@@ -63,28 +72,9 @@ export const primaryNav: PrimaryNavItem[] = [
     href: '/focus',
     sectionId: '#focus-areas',
     page: 'focus',
-    links: [
-      { label: 'Strategic Pillars Overview', href: '/focus#overview', sectionId: '#overview', page: 'focus', desc: 'Whole-systems policy architecture across climate, education, digital governance & action research' },
-      { label: 'Education & Capacity Development', href: '/focus#education', sectionId: '#education', page: 'focus', desc: 'Foundational learning systems, teacher professional development & pedagogical reform' },
-      { label: 'Policy Innovation & Action Research', href: '/focus#innovation', sectionId: '#innovation', page: 'focus', desc: 'Translational laboratories, regulatory sandboxes & iterative governance experiments' },
-      { label: 'Data, AI & Digital Governance', href: '/focus#data', sectionId: '#data', page: 'focus', desc: 'Sovereign data ecosystems, algorithmic accountability & modern public administration' },
-      { label: 'Climate Action & Sustainability', href: '/focus#climate', sectionId: '#climate', page: 'focus', desc: 'Green transition engines, circular economy, industrial decarbonization & ESG excellence' },
-    ],
+    links: [],
     columns: [],
-    promos: [
-      {
-        eyebrow: 'FOCUS 01 • EDUCATION',
-        title: 'Transforming foundational learning and workforce capability systems',
-        image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800',
-        href: '/focus#education',
-      },
-      {
-        eyebrow: 'FOCUS 04 • CLIMATE & ESG',
-        title: 'Actionable decarbonization and circular economic transition roadmaps',
-        image: 'https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&q=80&w=800',
-        href: '/focus#climate',
-      },
-    ],
+    promos: [],
   },
   {
     id: 'services',

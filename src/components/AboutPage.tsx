@@ -11,6 +11,7 @@ export interface AboutPageProps {
   onNavigateContact?: () => void;
   onNavigateApproach?: () => void;
   onNavigateFocus?: (sectionId?: string) => void;
+  onNavigatePeople?: () => void;
 }
 
 export const AboutPage: React.FC<AboutPageProps> = ({
@@ -19,6 +20,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
   onNavigateContact,
   onNavigateApproach,
   onNavigateFocus,
+  onNavigatePeople,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const fieldCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -583,26 +585,27 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           </div>
 
           <div className="flex items-center gap-2 font-mono text-[11px]">
-            <span className="text-slate-500 uppercase tracking-wider hidden sm:inline text-[10px]">About Sub-Pages:</span>
+            <span className="text-slate-500 uppercase tracking-wider hidden sm:inline text-[10px]">About Sections:</span>
             <a
               href="#who"
               className="px-2.5 py-1 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors"
             >
               Overview
             </a>
-            <a
-              href="#leadership"
-              className="px-2.5 py-1 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors"
+            <button
+              onClick={onNavigatePeople}
+              className="px-2.5 py-1 rounded-md text-[#ff7e67] bg-[#ff7e67]/10 hover:bg-[#ff7e67]/20 border border-[#ff7e67]/30 transition-all flex items-center gap-1.5 cursor-pointer font-bold"
+              title="Navigate to Dedicated IP3 People Page"
             >
-              People
-            </a>
+              <span>IP3 People</span>
+              <span className="text-[9px] uppercase tracking-wider bg-[#ff7e67] text-slate-950 px-1 py-0.2 rounded font-extrabold">Page</span>
+            </button>
             <button
               onClick={onNavigateApproach}
-              className="px-2.5 py-1 rounded-md text-[#ff7e67] bg-[#ff7e67]/10 hover:bg-[#ff7e67]/20 border border-[#ff7e67]/30 transition-all flex items-center gap-1.5 cursor-pointer font-bold"
-              title="Navigate to Our Approach Sub-Page"
+              className="px-2.5 py-1 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors cursor-pointer"
+              title="Navigate to Our Approach Page"
             >
               <span>Our Approach</span>
-              <span className="text-[9px] uppercase tracking-wider bg-[#ff7e67] text-slate-950 px-1 py-0.2 rounded font-extrabold">Sub-Page</span>
             </button>
           </div>
         </div>
@@ -1125,10 +1128,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({
 
             <div className="cta-row reveal">
               <button
-                onClick={() => onNavigateFocus?.('team')}
-                className="btn btn--ghost"
+                onClick={onNavigatePeople}
+                className="btn btn--primary"
               >
-                Meet IP3 People
+                Meet IP3 People (Dedicated Page)
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" aria-hidden="true">
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>
@@ -1179,7 +1182,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               <button onClick={onNavigateApproach}>What We Do</button>
               <button onClick={onNavigateApproach}>Our Approach</button>
               <button onClick={() => onNavigateFocus?.('insights')}>Insights</button>
-              <button onClick={() => onNavigateFocus?.('team')}>IP3 People</button>
+              <button onClick={onNavigatePeople}>IP3 People</button>
               <button onClick={onOpenTalk || onNavigateContact}>Contact</button>
             </nav>
           </div>

@@ -10,8 +10,8 @@ import { defaultNavbarConfig, primaryNav as defaultNavigation } from '../data/na
 import { useCMS } from '../context/CMSContext';
 
 interface NavbarProps {
-  currentPage?: 'home' | 'about' | 'approach' | 'focus' | 'services';
-  onNavigate?: (page: 'home' | 'about' | 'approach' | 'focus' | 'services', sectionId?: string) => void;
+  currentPage?: 'home' | 'about' | 'approach' | 'focus' | 'services' | 'people';
+  onNavigate?: (page: 'home' | 'about' | 'approach' | 'focus' | 'services' | 'people', sectionId?: string) => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -20,54 +20,51 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const { data } = useCMS();
   const defaultAboutItem = defaultNavigation.find((i) => i.id === 'about');
+  const defaultApproachItem = defaultNavigation.find((i) => i.id === 'approach');
   const defaultFocusItem = defaultNavigation.find((i) => i.id === 'focus-areas');
+  const defaultServicesItem = defaultNavigation.find((i) => i.id === 'services');
   const rawNavBase = (data.navigation && data.navigation.length > 0) ? [...data.navigation] : defaultNavigation;
-  // Ensure 'approach' is strictly an About Us sub-page and not a top-level item
-  const rawNav = rawNavBase.filter((i) => i.id !== 'approach');
+  
+  // Ensure 'approach' is in the main navbar (right after 'about' if missing)
+  const rawNav = [...rawNavBase];
+  if (!rawNav.some((i) => i.id === 'approach') && defaultApproachItem) {
+    const aboutIdx = rawNav.findIndex((i) => i.id === 'about');
+    if (aboutIdx !== -1) {
+      rawNav.splice(aboutIdx + 1, 0, defaultApproachItem);
+    } else {
+      rawNav.push(defaultApproachItem);
+    }
+  }
 
   const primaryNav = rawNav.map((item) => {
     if (item.id === 'about') {
       const baseLinks = (item.links && item.links.length > 0) ? item.links : (defaultAboutItem?.links || []);
-      const links = baseLinks.map((l) => {
-        if (l.label.toLowerCase().includes('approach') || l.href.includes('approach')) {
-          return {
-            ...l,
-            label: 'Our Approach (Sub-Page)',
-            href: '/approach',
-            sectionId: '#journey',
-            page: 'approach' as const,
-            desc: l.desc || 'Six movements of reform from diagnosis to durable institutional capability',
-          };
-        }
-        return l;
-      });
-
-      // If approach is not yet in about links, append it
-      if (!links.some((l) => l.href.includes('approach') || l.label.toLowerCase().includes('approach'))) {
-        links.push({
-          label: 'Our Approach (Sub-Page)',
-          href: '/approach',
-          sectionId: '#journey',
-          page: 'approach' as const,
-          desc: 'Six movements of reform from diagnosis to durable institutional capability',
+      // Remove approach from about links since it now lives in the main navbar
+      const links = baseLinks
+        .filter((l) => !l.href.includes('approach') && !l.label.toLowerCase().includes('approach'))
+        .map((l) => {
+          if (l.label.toLowerCase().includes('people') || l.href.includes('people')) {
+            return { ...l, href: '/people', page: 'people' as const, sectionId: '#faculty' };
+          }
+          return l;
         });
-      }
-
-      const promos = (item.promos && item.promos.length > 0 ? item.promos : (defaultAboutItem?.promos || [])).map((p) => {
-        if (p.eyebrow.toLowerCase().includes('approach') || p.href.includes('approach')) {
-          return {
-            ...p,
-            eyebrow: 'OUR APPROACH SUB-PAGE',
-            href: '/approach',
-          };
-        }
-        return p;
-      });
+      const promos = (item.promos && item.promos.length > 0 ? item.promos : (defaultAboutItem?.promos || []))
+        .filter((p) => !p.eyebrow.toLowerCase().includes('approach') && !p.href.includes('approach'))
+        .map((p) => {
+          if (p.eyebrow.toLowerCase().includes('people') || p.href.includes('people')) {
+            return { ...p, href: '/people' };
+          }
+          return p;
+        });
 
       return { ...item, links, promos, columns: [] };
     }
-    if (item.id === 'focus-areas' || item.id === 'services') {
-      const base = (!item.links || item.links.length === 0) ? (defaultFocusItem || item) : item;
+    if (item.id === 'approach' || item.id === 'focus-areas') {
+      // Direct top-level navigation links without dropdown menus
+      return { ...item, links: [], promos: [], columns: [] };
+    }
+    if (item.id === 'services') {
+      const base = (!item.links || item.links.length === 0) ? (defaultServicesItem || item) : item;
       return { ...base, columns: [] };
     }
     const safeColumns = (item.columns || []).filter((col) => {
@@ -261,8 +258,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
 
             {/* Primary Desktop Navigation Links */}
-            <nav className="_nav_aes6y_32 hidden lg:flex flex-1 justify-center" aria-label="Primary">
-              <ul className="_navList_aes6y_38 flex items-center gap-2 xl:gap-5 h-full">
+            <nav className="_nav_aes6y_32 hidden lg:flex flex-1 justify-center min-w-0" aria-label="Primary">
+              <ul className="_navList_aes6y_38 flex items-center flex-nowrap gap-1.5 xl:gap-4 h-full">
                 {primaryNav.map((item) => {
                   const hasSubPages = Boolean(
                     (item.links && item.links.length > 0) ||
@@ -270,7 +267,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   );
                   const isOpen = hasSubPages && openMenu === item.id;
                   const isCurrentPage = 
-                    (item.id === 'about' && (currentPage === 'about' || currentPage === 'approach')) ||
+                    (item.id === 'about' && (currentPage === 'about' || currentPage === 'people')) ||
+                    (item.id === 'approach' && currentPage === 'approach') ||
                     (item.id === 'focus-areas' && currentPage === 'focus') ||
                     (item.id === 'services' && currentPage === 'services');
 
@@ -281,11 +279,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                       onMouseEnter={() => {
                         if (hasSubPages) handleEnter(item.id);
                       }}
-                      className="relative h-full flex items-center"
+                      className="relative h-full flex items-center shrink-0"
                     >
                       <button
                         id={`nav-btn-${item.id}`}
-                        className={`_navLink_aes6y_45 relative px-2.5 py-2 text-xs xl:text-sm font-semibold tracking-normal transition-colors cursor-pointer flex items-center gap-1 rounded-lg ${
+                        className={`_navLink_aes6y_45 relative px-2.5 py-2 text-xs xl:text-sm font-semibold tracking-normal transition-colors cursor-pointer flex items-center gap-1 rounded-lg whitespace-nowrap shrink-0 ${
                           isOpen || isCurrentPage
                             ? 'text-[#ff7e67] font-bold bg-slate-800/50'
                             : 'text-slate-300 hover:text-white hover:bg-slate-800/30'
@@ -305,10 +303,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                           }
                         }}
                       >
-                        <span>{item.label}</span>
+                        <span className="whitespace-nowrap select-none">{item.label}</span>
                         {hasSubPages && (
                           <ChevronDown
-                            className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                            className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${
                               isOpen ? 'rotate-180 text-[#ff7e67]' : 'opacity-60'
                             }`}
                           />

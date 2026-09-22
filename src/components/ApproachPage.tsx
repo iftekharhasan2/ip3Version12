@@ -2,11 +2,13 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronRight } from 'lucide-react';
 
 export interface ApproachPageProps {
+  initialSection?: string;
   onNavigateHome?: () => void;
   onNavigateContact?: () => void;
   onNavigateAbout?: () => void;
   onNavigateFocus?: (sectionId?: string) => void;
   onNavigateServices?: (serviceId?: string) => void;
+  onNavigatePeople?: () => void;
   onOpenTalk?: () => void;
 }
 
@@ -992,11 +994,13 @@ const Disclosure: React.FC<DisclosureProps> = ({ label, labelOpen, defaultOpen =
 // ---------------------------------------------------------------------------
 
 export const ApproachPage: React.FC<ApproachPageProps> = ({
+  initialSection,
   onNavigateHome,
   onNavigateContact,
   onNavigateAbout,
   onNavigateFocus,
   onNavigateServices,
+  onNavigatePeople,
   onOpenTalk,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -1008,10 +1012,20 @@ export const ApproachPage: React.FC<ApproachPageProps> = ({
   const [activeSectorId, setActiveSectorId] = useState<string>('institutions');
   const [activeHcdIndex, setActiveHcdIndex] = useState<number>(0);
 
-  // Scroll to top on mount
+  // Scroll to section or top on mount
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    if (initialSection) {
+      const clean = initialSection.startsWith('#') ? initialSection : `#${initialSection}`;
+      setTimeout(() => {
+        const el = document.querySelector(clean);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [initialSection]);
 
   // Set up reveal animations
   useEffect(() => {

@@ -147,8 +147,42 @@ export const CMSProvider: React.FC<CMSProviderProps> = ({ children, readOnly = f
 
   const sanitizeNav = (nav?: PrimaryNavItem[]): PrimaryNavItem[] | undefined => {
     if (!nav || !Array.isArray(nav)) return nav;
-    return nav.map((item) => {
-      if (item.id === 'about' || item.id === 'services' || item.id === 'focus-areas') {
+
+    const defaultApproach = DEFAULT_WEBSITE_DATA.navigation?.find((i) => i.id === 'approach');
+    let working = [...nav];
+    if (!working.some((i) => i.id === 'approach') && defaultApproach) {
+      const aboutIdx = working.findIndex((i) => i.id === 'about');
+      if (aboutIdx !== -1) {
+        working.splice(aboutIdx + 1, 0, defaultApproach);
+      } else {
+        working.push(defaultApproach);
+      }
+    }
+
+    return working.map((item) => {
+      if (item.id === 'about') {
+        const cleanedLinks = (item.links || [])
+          .filter((l) => !l.href.includes('approach') && !l.label.toLowerCase().includes('approach'))
+          .map((l) => {
+            if (l.label.toLowerCase().includes('people') || l.href.includes('people')) {
+              return { ...l, href: '/people', page: 'people' as const, sectionId: '#faculty' };
+            }
+            return l;
+          });
+        const cleanedPromos = (item.promos || [])
+          .filter((p) => !p.eyebrow.toLowerCase().includes('approach') && !p.href.includes('approach'))
+          .map((p) => {
+            if (p.eyebrow.toLowerCase().includes('people') || p.href.includes('people')) {
+              return { ...p, href: '/people' };
+            }
+            return p;
+          });
+        return { ...item, links: cleanedLinks, promos: cleanedPromos, columns: [] };
+      }
+      if (item.id === 'approach' || item.id === 'focus-areas') {
+        return { ...item, links: [], promos: [], columns: [] };
+      }
+      if (item.id === 'about' || item.id === 'services') {
         return { ...item, columns: [] };
       }
       const safeCols = (item.columns || []).filter((col) => {

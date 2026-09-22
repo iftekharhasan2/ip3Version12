@@ -8,7 +8,7 @@ interface MobileNavProps {
   open: boolean;
   onClose: () => void;
   onOpenSearch: () => void;
-  onNavigate?: (page: 'home' | 'about' | 'approach' | 'focus' | 'services', sectionId?: string) => void;
+  onNavigate?: (page: 'home' | 'about' | 'approach' | 'focus' | 'services' | 'people', sectionId?: string) => void;
 }
 
 export const MobileNav: React.FC<MobileNavProps> = ({
@@ -19,42 +19,41 @@ export const MobileNav: React.FC<MobileNavProps> = ({
 }) => {
   const { data } = useCMS();
   const defaultAboutItem = defaultNavigation.find((i) => i.id === 'about');
+  const defaultApproachItem = defaultNavigation.find((i) => i.id === 'approach');
   const defaultFocusItem = defaultNavigation.find((i) => i.id === 'focus-areas');
+  const defaultServicesItem = defaultNavigation.find((i) => i.id === 'services');
   const rawNavBase = (data.navigation && data.navigation.length > 0) ? [...data.navigation] : defaultNavigation;
-  // Filter out 'approach' as top-level item since it is an About Us sub-page
-  const rawNav = rawNavBase.filter((i) => i.id !== 'approach');
+  
+  // Ensure 'approach' is in the mobile nav (right after 'about' if missing)
+  const rawNav = [...rawNavBase];
+  if (!rawNav.some((i) => i.id === 'approach') && defaultApproachItem) {
+    const aboutIdx = rawNav.findIndex((i) => i.id === 'about');
+    if (aboutIdx !== -1) {
+      rawNav.splice(aboutIdx + 1, 0, defaultApproachItem);
+    } else {
+      rawNav.push(defaultApproachItem);
+    }
+  }
 
   const primaryNav = rawNav.map((item) => {
     if (item.id === 'about') {
       const baseLinks = (item.links && item.links.length > 0) ? item.links : (defaultAboutItem?.links || []);
-      const links = baseLinks.map((l) => {
-        if (l.label.toLowerCase().includes('approach') || l.href.includes('approach')) {
-          return {
-            ...l,
-            label: 'Our Approach (Sub-Page)',
-            href: '/approach',
-            sectionId: '#journey',
-            page: 'approach' as const,
-            desc: l.desc || 'Six movements of reform from diagnosis to durable institutional capability',
-          };
-        }
-        return l;
-      });
-
-      if (!links.some((l) => l.href.includes('approach') || l.label.toLowerCase().includes('approach'))) {
-        links.push({
-          label: 'Our Approach (Sub-Page)',
-          href: '/approach',
-          sectionId: '#journey',
-          page: 'approach' as const,
-          desc: 'Six movements of reform from diagnosis to durable institutional capability',
+      // Remove approach from about links since it now lives in the primary navbar
+      const links = baseLinks
+        .filter((l) => !l.href.includes('approach') && !l.label.toLowerCase().includes('approach'))
+        .map((l) => {
+          if (l.label.toLowerCase().includes('people') || l.href.includes('people')) {
+            return { ...l, href: '/people', page: 'people' as const, sectionId: '#faculty' };
+          }
+          return l;
         });
-      }
-
       return { ...item, links, columns: [] };
     }
-    if (item.id === 'focus-areas' || item.id === 'services') {
-      const base = (!item.links || item.links.length === 0) ? (defaultFocusItem || item) : item;
+    if (item.id === 'approach' || item.id === 'focus-areas') {
+      return { ...item, links: [], promos: [], columns: [] };
+    }
+    if (item.id === 'services') {
+      const base = (!item.links || item.links.length === 0) ? (defaultServicesItem || item) : item;
       return { ...base, columns: [] };
     }
     const safeColumns = (item.columns || []).filter((col) => {
@@ -101,7 +100,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
     setExpandedItem((prev) => (prev === id ? null : id));
   };
 
-  const handleLinkClick = (e: React.MouseEvent, href: string, sectionId?: string, page?: 'home' | 'about' | 'approach' | 'focus' | 'services') => {
+  const handleLinkClick = (e: React.MouseEvent, href: string, sectionId?: string, page?: 'home' | 'about' | 'approach' | 'focus' | 'services' | 'people') => {
     e.preventDefault();
     onClose();
 
@@ -120,6 +119,9 @@ export const MobileNav: React.FC<MobileNavProps> = ({
         targetSection = href.includes('#') ? href.slice(href.indexOf('#')) : '#services';
       } else if (href.startsWith('/approach')) {
         targetPage = 'approach';
+        targetSection = href.includes('#') ? href.slice(href.indexOf('#')) : undefined;
+      } else if (href.startsWith('/people')) {
+        targetPage = 'people';
         targetSection = href.includes('#') ? href.slice(href.indexOf('#')) : undefined;
       }
     }

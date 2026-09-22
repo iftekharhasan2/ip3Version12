@@ -5,6 +5,7 @@ import { AboutPage } from './components/AboutPage';
 import { ApproachPage } from './components/ApproachPage';
 import { FocusPage } from './components/FocusPage';
 import { ServicesPage } from './components/ServicesPage';
+import { PeoplePage } from './components/PeoplePage';
 import { Ip3TrailerSection } from './components/Ip3TrailerSection';
 import { SystemsArchitectureSection } from './components/SystemsArchitectureSection';
 import { ExecutiveCard } from './components/ExecutiveCard';
@@ -19,7 +20,7 @@ import { ContentGate } from './components/ContentGate';
 function AppContent() {
   const { data, themeMode, setThemeMode, toggleTheme } = useCMS();
 
-  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'approach' | 'focus' | 'services'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'approach' | 'focus' | 'services' | 'people'>('home');
   const [currentSlideId, setCurrentSlideId] = useState<number>(data.slides?.[0]?.id ?? 1);
   const [autoplayInterval] = useState<number>(3000);
 
@@ -71,7 +72,7 @@ function AppContent() {
     setCurrentSlideId(id);
   };
 
-  const handleNavigate = (page: 'home' | 'about' | 'approach' | 'focus' | 'services', sectionId?: string) => {
+  const handleNavigate = (page: 'home' | 'about' | 'approach' | 'focus' | 'services' | 'people', sectionId?: string) => {
     setCurrentPage(page);
     setTargetSection(sectionId);
 
@@ -105,7 +106,7 @@ function AppContent() {
       />
 
       {currentPage === 'about' ? (
-        /* Dedicated Separate About Page with IP3 People sub-page */
+        /* Dedicated Separate About Page */
         <AboutPage
           darkMode={isDarkMode}
           setDarkMode={handleSetDarkMode}
@@ -119,13 +120,31 @@ function AppContent() {
           onNavigateContact={() => handleNavigate('home', '#contact-advisory')}
           onNavigateApproach={() => handleNavigate('approach')}
           onNavigateFocus={(sectionId) => handleNavigate('focus', sectionId)}
+          onNavigatePeople={() => handleNavigate('people')}
+        />
+      ) : currentPage === 'people' ? (
+        /* Dedicated Separate IP3 People Page */
+        <PeoplePage
+          darkMode={isDarkMode}
+          onOpenTalk={() => setIsTalkModalOpen(true)}
+          onOpenCollaborate={(area) => {
+            setCollaborateArea(area || 'Faculty & Advisory Inquiry');
+            setIsCollaborateModalOpen(true);
+          }}
+          onNavigateHome={() => handleNavigate('home', '#hero')}
+          onNavigateAbout={() => handleNavigate('about')}
+          onNavigateApproach={() => handleNavigate('approach')}
+          onNavigateFocus={(sectionId) => handleNavigate('focus', sectionId)}
+          onNavigateServices={() => handleNavigate('services')}
         />
       ) : currentPage === 'approach' ? (
         /* Dedicated Separate Approach Page */
         <ApproachPage
+          initialSection={targetSection}
           onNavigateHome={() => handleNavigate('home', '#hero')}
           onNavigateContact={() => handleNavigate('home', '#contact-advisory')}
           onNavigateAbout={() => handleNavigate('about')}
+          onNavigatePeople={() => handleNavigate('people')}
           onNavigateFocus={(sectionId) => handleNavigate('focus', sectionId)}
           onNavigateServices={(serviceId) => handleNavigate('services', serviceId)}
           onOpenTalk={() => setIsTalkModalOpen(true)}
@@ -197,7 +216,7 @@ function AppContent() {
       )}
 
       {/* Footer */}
-      {currentPage !== 'about' && <Footer />}
+      {currentPage !== 'about' && currentPage !== 'people' && <Footer />}
 
 
       {/* Interactive Action Modals */}
