@@ -33,7 +33,7 @@ interface FrameworkMatrixProps {
 
 export const FrameworkMatrix: React.FC<FrameworkMatrixProps> = ({ steps, onSelectStep }) => {
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div className="w-full pb-16">
       <div className="border border-slate-800 rounded-3xl bg-[#070c17] p-6 sm:p-8 shadow-2xl relative overflow-hidden">
         <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-5">
           <div>

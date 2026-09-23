@@ -214,7 +214,7 @@ export const DeliveryCyclePipeline: React.FC<DeliveryCyclePipelineProps> = ({
   };
 
   return (
-    <div className={`w-full max-w-7xl mx-auto space-y-8 select-none ${className}`}>
+    <div className={`w-full space-y-8 select-none ${className}`}>
       {/* ======================================================== */}
       {/* 6-NODE PIPELINE SCHEMATIC (Matches image layout & styling) */}
       {/* ======================================================== */}

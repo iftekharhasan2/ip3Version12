@@ -13,7 +13,7 @@ export const OrbitalSystemCloneSection: React.FC<OrbitalSystemCloneSectionProps>
   return (
     <section
       id="orbital-system-clone-section"
-      className={`relative w-full pt-16 sm:pt-24 pb-0 px-4 sm:px-8 lg:px-12 max-w-[1500px] mx-auto z-10 bg-[#050a12] border-t border-slate-800/80 text-white ${className}`}
+      className={`relative w-full pt-16 sm:pt-24 pb-0 px-4 sm:px-6 lg:px-10 z-10 bg-[#050a12] border-t border-slate-800/80 text-white ${className}`}
     >
       {/* 4-card vertical layout (matching the selected element clone) */}
       <OrbitalSystem

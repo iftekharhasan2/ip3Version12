@@ -359,10 +359,10 @@ export const CMSProvider: React.FC<CMSProviderProps> = ({ children, readOnly = f
 
     // Header and Body font families
     if (theme.headerFont) {
-      root.style.setProperty('--font-header-family', `'${theme.headerFont}', system-ui, -apple-system, sans-serif`);
+      root.style.setProperty('--font-header-family', `'${theme.headerFont}', 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif`);
     }
     if (theme.bodyFont) {
-      root.style.setProperty('--font-body-family', `'${theme.bodyFont}', system-ui, -apple-system, sans-serif`);
+      root.style.setProperty('--font-body-family', `'${theme.bodyFont}', Georgia, Cambria, 'Times New Roman', serif`);
     }
 
     // Header and Body font scaling

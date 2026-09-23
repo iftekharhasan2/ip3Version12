@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Compass, Sparkles, AlertTriangle, ShieldCheck, Activity } from 'lucide-react';
+import { X, ArrowLeft, Compass, Sparkles, AlertTriangle, ShieldCheck, Activity } from 'lucide-react';
 import { SystemItem, SystemOverlap } from '../types';
 
 interface SystemDetailPanelProps {
@@ -26,14 +26,15 @@ export const SystemDetailPanel: React.FC<SystemDetailPanelProps> = ({
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 pb-12"
+        className="w-full px-0 mx-0 mt-0 pb-8 relative z-30"
       >
         <div
-          className="relative rounded-2xl bg-[#090f1d]/95 border border-slate-800/80 backdrop-blur-xl overflow-hidden shadow-2xl p-6 sm:p-8"
+          className="relative z-30 mt-0 rounded-2xl bg-[#090f1d]/95 border border-slate-700/80 backdrop-blur-xl overflow-hidden shadow-2xl p-6 sm:p-8"
           style={{
-            boxShadow: `0 20px 50px -10px rgba(0, 0, 0, 0.7), 0 0 40px -15px ${system.glowColor.replace(
+            marginTop: '0px',
+            boxShadow: `0 30px 70px -15px rgba(0, 0, 0, 0.9), 0 0 50px -10px ${system.glowColor.replace(
               '0.7',
-              '0.2'
+              '0.25'
             )}`,
           }}
         >
@@ -73,6 +74,14 @@ export const SystemDetailPanel: React.FC<SystemDetailPanelProps> = ({
 
             {/* Action Buttons */}
             <div className="flex items-center gap-2 self-end sm:self-center">
+              <button
+                type="button"
+                onClick={onClose}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors border border-slate-700/60 text-xs cursor-pointer font-sans"
+              >
+                <ArrowLeft className="w-3.5 h-3.5" />
+                <span>All 8 Sectors</span>
+              </button>
               <button
                 type="button"
                 onClick={onClose}

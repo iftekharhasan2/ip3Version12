@@ -276,23 +276,22 @@ export const PolySolutionsSection: React.FC<PolySolutionsSectionProps> = ({
                   {idx === 1 ? (
                     <div
                       id="sector-systems-items-container"
-                      className="w-full rounded-2xl sm:rounded-3xl bg-[#F4EFEA] border border-[#E6DDD2] px-8 sm:px-12 lg:px-16 py-12 sm:py-16 my-4 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-14"
+                      className="w-full flex flex-col space-y-3 pt-2 pb-2 max-w-5xl"
                     >
-                      <div className="flex-1 min-w-0">
-                        <p
-                          id="climate-energy-resilience"
-                          className="font-serif text-[42px] sm:text-[52px] lg:text-[62px] font-medium text-[#14181B] tracking-tight leading-[1.1]"
-                        >
-                          Start where<br />
-                          <span className="italic text-[#1E3A2F] font-normal">you need clarity.</span>
-                        </p>
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.22em] text-[#38d9c0] uppercase">
+                          {(theme.category || 'From Analysis to Implementation').toUpperCase()}
+                        </span>
                       </div>
-                      <div className="max-w-md lg:text-left flex-shrink-0">
-                        <p className="text-base sm:text-lg lg:text-[19px] text-[#4A5560] leading-relaxed font-normal">
-                          A focused review or a full system design.<br className="hidden sm:inline" />
-                          Choose the right entry point for the decision ahead.
-                        </p>
-                      </div>
+                      <h2
+                        id="climate-energy-resilience"
+                        className="font-sans text-[38px] sm:text-[48px] lg:text-[58px] font-extrabold text-white tracking-tight leading-[1.08]"
+                      >
+                        Translation, Not Theory
+                      </h2>
+                      <p className="text-slate-300 text-base sm:text-lg lg:text-[19px] font-normal leading-relaxed max-w-4xl">
+                        Our work is designed around the decisions institutions actually have to make: what to reform, what to finance, how to structure implementation, where risks sit, how results will be measured, and what evidence is needed to scale.
+                      </p>
                     </div>
                   ) : (
                     <div className={`flex flex-col space-y-3 ${idx === 0 ? 'w-full max-w-none' : 'max-w-4xl'}`}>

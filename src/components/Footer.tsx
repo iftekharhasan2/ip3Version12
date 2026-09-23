@@ -7,7 +7,7 @@ export const Footer: React.FC = () => {
   const ip3OfficeInfo = data.officeInfo;
   return (
     <footer className="bg-[#050a12] text-slate-100 border-t border-slate-800 font-sans">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-8 border-b border-slate-800/80">
+      <div className="w-full px-4 sm:px-6 lg:px-10 py-8 border-b border-slate-800/80">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-slate-400">
           <div className="flex items-start gap-3">
             <div className="p-2.5 rounded-xl bg-[#081220] text-[#ff7e67] shrink-0 border border-slate-800">
@@ -48,7 +48,7 @@ export const Footer: React.FC = () => {
       </div>
 
       <div className="bg-[#050a12] border-t border-slate-800/80">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-0">
+        <div className="w-full px-4 sm:px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-0">
           <div className="flex items-center gap-4 w-full sm:w-auto">
             <div className="bg-[#ff7e67] hover:bg-[#ff8f7b] transition-colors p-3.5 sm:p-4 flex items-center justify-center shrink-0 shadow-inner">
               <div className="w-6 h-6 rounded-full border-2 border-[#050a12]/40 flex items-center justify-center">

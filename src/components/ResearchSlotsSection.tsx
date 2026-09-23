@@ -128,19 +128,16 @@ export default function ResearchSlotsSection({ className = '' }: ResearchSlotsSe
   return (
     <div id="research-slots-pipeline-wrapper" className={`w-full ${className}`}>
       {/* Section Eyebrow / Heading */}
-      <div className="w-full max-w-5xl mx-auto pt-8 sm:pt-10 pb-3 flex items-center justify-between border-t border-slate-800/80">
+      <div className="w-full mx-auto pt-8 sm:pt-10 pb-3 flex items-center justify-between border-t border-slate-800/80">
         <span className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.22em] text-[#38d9c0] uppercase block">
           EVIDENCE &amp; WORKING RESEARCH PIPELINE
         </span>
-        <span className="text-xs text-slate-500 font-mono hidden sm:inline-block">
-          Open-Access Working Papers &amp; Policy Briefs
-        </span>
       </div>
 
-      {/* Styled container matching div#sector-systems-items-container exactly */}
+      {/* Styled container matching client deliverables section */}
       <div
         id="sector-systems-items-container-research"
-        className="w-full max-w-5xl space-y-6 pt-4 pb-10 text-left mx-auto"
+        className="w-full text-left mx-auto divide-y divide-slate-800/80"
       >
         {RESEARCH_SLOTS.map((slot, idx) => (
           <motion.div
@@ -149,42 +146,50 @@ export default function ResearchSlotsSection({ className = '' }: ResearchSlotsSe
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.05 * idx }}
-            className="text-left w-full text-lg sm:text-xl md:text-2xl leading-relaxed text-slate-200"
+            transition={{ duration: 0.6, delay: 0.05 * idx }}
+            className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start py-8 sm:py-10 border-b border-slate-800/80"
           >
-            <strong className="font-bold text-white tracking-tight">
-              {slot.title}
-            </strong>{' '}
-            <span className="text-slate-400 font-light">—</span>{' '}
-            <span className="italic text-[#38d9c0] font-medium">
-              "{slot.author} · {slot.date} · {slot.type}"
-            </span>{' '}
-            <span className="text-[#38d9c0] font-bold mx-1">→</span>{' '}
-            <span className="text-slate-300 font-normal">
-              {slot.description}
-            </span>{' '}
-            <span className="inline-flex flex-wrap items-center gap-2 mt-2 sm:mt-0 sm:ml-2.5 align-middle">
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-medium tracking-wide bg-[#38d9c0]/15 text-[#38d9c0] border border-[#38d9c0]/30">
-                {slot.sector}
-              </span>
-              <button
-                type="button"
-                onClick={() => handleDownload(slot)}
-                className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-mono font-medium tracking-wide bg-slate-800 hover:bg-[#38d9c0] text-slate-300 hover:text-[#050a12] border border-slate-700 hover:border-[#38d9c0] transition-colors cursor-pointer"
-                title="Download verified publication"
-              >
-                <FileText className="w-3 h-3 text-[#38d9c0]" />
-                <span>{downloadingId === slot.id ? 'Downloading...' : slot.pdfLabel}</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setSelectedSlot(slot)}
-                className="inline-flex items-center gap-1 text-xs font-mono font-semibold tracking-wider text-[#38d9c0] hover:text-white transition-colors cursor-pointer ml-1 underline decoration-[#38d9c0]/40 hover:decoration-white underline-offset-4"
-              >
-                <span>{slot.cta}</span>
-                <span>→</span>
-              </button>
-            </span>
+            <div className="lg:col-span-5 flex flex-col space-y-2.5">
+              <h3 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-medium text-white tracking-tight leading-tight">
+                {slot.title}
+              </h3>
+              <p className="text-slate-400 text-base sm:text-lg font-normal leading-relaxed max-w-md">
+                {slot.description}
+              </p>
+              <div className="pt-2 flex flex-wrap items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-medium tracking-wide bg-[#38d9c0]/15 text-[#38d9c0] border border-[#38d9c0]/30">
+                  {slot.sector}
+                </span>
+              </div>
+            </div>
+            <div className="lg:col-span-7 flex flex-col justify-end self-end lg:self-end pt-1 lg:pt-0 pb-1">
+              <ul className="list-disc pl-5 marker:text-[#38d9c0] text-[#38d9c0] space-y-2.5 sm:space-y-3 text-base sm:text-[17px] leading-relaxed mt-auto">
+                {slot.keyFindings.map((finding, fIdx) => (
+                  <li key={fIdx} className="text-slate-200">
+                    <span>{finding}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="pt-4 flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => handleDownload(slot)}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium tracking-wide bg-slate-800 hover:bg-[#38d9c0] text-slate-300 hover:text-[#050a12] border border-slate-700 hover:border-[#38d9c0] transition-colors cursor-pointer"
+                  title="Download verified publication"
+                >
+                  <FileText className="w-3 h-3 text-[#38d9c0]" />
+                  <span>{downloadingId === slot.id ? 'Downloading...' : slot.pdfLabel}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedSlot(slot)}
+                  className="inline-flex items-center gap-1 text-xs font-mono font-semibold tracking-wider text-[#38d9c0] hover:text-white transition-colors cursor-pointer underline decoration-[#38d9c0]/40 hover:decoration-white underline-offset-4"
+                >
+                  <span>{slot.cta}</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
           </motion.div>
         ))}
       </div>

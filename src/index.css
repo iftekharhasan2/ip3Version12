@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --font-header-family: 'Archivo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-header-family: 'Newsreader', 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
+  --font-body-family: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif;
   --header-scale: 1;
   --body-scale: 1;
-  --font-header-weight: 700;
-  --font-header-tracking: normal;
+  --font-header-weight: 400;
+  --font-header-tracking: -0.015em;
   --font-header-transform: none;
 
   --bg: #050a12;
@@ -44,14 +44,14 @@
 }
 
 @theme {
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-serif: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif;
-  --font-display: 'Archivo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif;
+  --font-serif: 'Newsreader', 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
+  --font-display: 'Newsreader', 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --font-archivo: 'Archivo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: 'Archivo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-header: 'Archivo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-cardo: 'Archivo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-archivo: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif;
+  --font-heading: 'Newsreader', 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
+  --font-header: 'Newsreader', 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
+  --font-cardo: 'Newsreader', 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
 
   --color-brand-bg: var(--bg);
   --color-brand-coral: var(--coral);
@@ -63,11 +63,11 @@
 
 @layer base {
   *, *::before, *::after {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif;
   }
 
   html, body {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-family: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif !important;
     background-color: var(--bg) !important;
     color: var(--white);
     transition: background-color 0.25s ease, color 0.25s ease;
@@ -75,20 +75,21 @@
   
   .font-serif, .font-serif-custom, .font-serif-playfair,
   .font-serif-newsreader, .font-serif-cormorant, .font-serif-instrument {
-    font-family: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif !important;
+    font-family: 'Newsreader', 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif !important;
+    font-variation-settings: "opsz" 72 !important;
+    font-feature-settings: "swsh" 1, "dlig" 1 !important;
   }
 
-  .font-mono {
+  .font-mono, [class*="font-mono"], .mono {
     font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
   }
 
   .font-sans, .font-sans-body {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-family: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif !important;
   }
 
   /* ========================================================================= */
-  /* ALL HEADER & HEADING TYPOGRAPHY — DYNAMICALLY DRIVEN VIA CMS VARIABLES */
-  /* Defaults to Archivo while giving full CMS control */
+  /* ALL HEADER & HEADING TYPOGRAPHY — EDITORIAL SERIF (NEWSREADER OPSZ 72)   */
   /* ========================================================================= */
   h1, h2, h3, h4, h5, h6,
   h1[class], h2[class], h3[class], h4[class], h5[class], h6[class],
@@ -98,7 +99,6 @@
   h1.font-serif-cormorant, h2.font-serif-cormorant, h3.font-serif-cormorant, h4.font-serif-cormorant, h5.font-serif-cormorant, h6.font-serif-cormorant,
   h1.font-serif-instrument, h2.font-serif-instrument, h3.font-serif-instrument, h4.font-serif-instrument, h5.font-serif-instrument, h6.font-serif-instrument,
   h1.font-sans, h2.font-sans, h3.font-sans, h4.font-sans, h5.font-sans, h6.font-sans,
-  h1.font-mono, h2.font-mono, h3.font-mono, h4.font-mono, h5.font-mono, h6.font-mono,
   h1.font-display, h2.font-display, h3.font-display, h4.font-display, h5.font-display, h6.font-display,
   h1.font-cardo, h2.font-cardo, h3.font-cardo, h4.font-cardo, h5.font-cardo, h6.font-cardo,
   h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
@@ -120,10 +120,12 @@
   .theme-horizon-block h1, .theme-horizon-block h2, .theme-horizon-block h3, .theme-horizon-block h4,
   [class*="header"] h1, [class*="header"] h2, [class*="header"] h3, [class*="header"] h4, [class*="header"] h5, [class*="header"] h6,
   [class*="title"] h1, [class*="title"] h2, [class*="title"] h3, [class*="title"] h4, [class*="title"] h5, [class*="title"] h6 {
-    font-family: var(--font-header-family, 'Archivo', system-ui, sans-serif) !important;
-    font-weight: var(--font-header-weight, 700) !important;
-    letter-spacing: var(--font-header-tracking, normal);
-    text-transform: var(--font-header-transform, none);
+    font-family: 'Newsreader', 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif !important;
+    font-variation-settings: "opsz" 72 !important;
+    font-feature-settings: "swsh" 1, "dlig" 1 !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02em !important;
+    text-transform: none !important;
   }
 
   .editorial-hero-title,
@@ -138,12 +140,19 @@
     text-transform: none !important;
   }
 
+  em, i, .italic, [class*="italic"],
+  h1 em, h2 em, h3 em, h4 em, h5 em, h6 em,
+  h1 i, h2 i, h3 i, h4 i, h5 i, h6 i,
+  h1 .italic, h2 .italic, h3 .italic, h4 .italic, h5 .italic, h6 .italic,
+  .serif-italic,
+  em.serif-italic,
   .editorial-hero-title .serif-italic,
   .editorial-hero-title em,
   .editorial-hero-title i {
     font-family: 'Newsreader', 'Playfair Display', Georgia, serif !important;
     font-style: italic !important;
-    font-weight: 400 !important;
+    font-variation-settings: "opsz" 72 !important;
+    font-feature-settings: "swsh" 1, "dlig" 1 !important;
   }
 
   section,
@@ -502,9 +511,9 @@
 
   --ease: cubic-bezier(.22,1,.36,1);
 
-  --serif: "Fraunces", "Iowan Old Style", Georgia, "Times New Roman", serif;
-  --sans:  "Archivo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --mono:  "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --serif: "Newsreader", "Playfair Display", Georgia, "Times New Roman", serif;
+  --sans:  "Newsreader", Georgia, Cambria, "Times New Roman", serif;
+  --mono:  "JetBrains Mono", "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 
   --hue: 18;
   background: var(--ground);
@@ -917,9 +926,9 @@
   --wrap: 1180px;
   --col: 40rem;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
-  --font-body: "Archivo", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", monospace;
+  --font-display: "Newsreader", "Playfair Display", Georgia, serif;
+  --font-body: "Newsreader", Georgia, Cambria, serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", monospace;
 
   background: var(--ground);
   color: var(--text);

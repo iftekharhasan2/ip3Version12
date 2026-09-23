@@ -86,7 +86,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ embedded = fal
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#ff7e67]/5 rounded-full blur-[140px] pointer-events-none" />
       )}
 
-      <div className={`${embedded ? 'w-full' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'} space-y-10 relative z-10`}>
+      <div className={`${embedded ? 'w-full' : 'w-full px-4 sm:px-6 lg:px-10'} space-y-10 relative z-10`}>
         {/* Strategic Output Categories */}
         <OutputCategoriesList embedded={embedded} />
 

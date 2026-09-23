@@ -209,7 +209,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           entries.forEach((e) => {
             if (e.isIntersecting) {
               const mi = +(e.target.getAttribute('data-m') || 0);
-              buildDeliverTrack(mi === 4 ? 5 : mi);
+              buildDeliverTrack(mi);
             }
           });
         },
@@ -957,11 +957,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                   <div className="track__mod" data-m="1"><span className="k">02</span><span className="nm">Design</span><span className="arrow">→</span></div>
                   <div className="track__mod" data-m="2"><span className="k">03</span><span className="nm">Test</span><span className="arrow">→</span></div>
                   <div className="track__mod" data-m="3"><span className="k">04</span><span className="nm">Implement</span><span className="arrow">→</span></div>
-                  <div className="track__mod" data-m="4"><span className="k">05</span><span className="nm">Learn</span><span className="arrow">→</span></div>
-                  <div className="track__mod" data-m="5"><span className="k">06</span><span className="nm">Scale</span><span className="arrow">●</span></div>
+                  <div className="track__mod" data-m="4"><span className="k">05</span><span className="nm">Learn &amp; Scale</span><span className="arrow">●</span></div>
                 </div>
                 <p className="track__logic">
-                  The IP3 impact logic — <b>Sense → Design → Test → Implement → Learn → Scale</b>
+                  The IP3 impact logic — <b>Sense → Design → Test → Implement → Learn &amp; Scale</b>
                 </p>
               </div>
 

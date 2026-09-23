@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { SystemItem } from '../types';
-import { DeliveryCyclePipelineSection } from './DeliveryCyclePipelineSection';
 
 interface EightSystemsHeroProps {
   systems: SystemItem[];
@@ -175,21 +174,18 @@ export const EightSystemsHero: React.FC<EightSystemsHeroProps> = ({
           })()}
         </motion.div>
 
-        {/* 8 Systems Pills Grid / Buttons - Placed After Title */}
+        {/* 8 Systems Pills Grid / Buttons - Hidden when detail panel is active */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full"
+          className={`w-full relative z-10 ${selectedSystemId ? 'hidden' : 'block'}`}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 w-full">
             {systems.map(renderPill)}
           </div>
         </motion.div>
       </div>
-
-      {/* Delivery Cycle Pipeline Section placed directly after selected header/pills div */}
-      <DeliveryCyclePipelineSection />
     </div>
   );
 };

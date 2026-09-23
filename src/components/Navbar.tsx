@@ -204,7 +204,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Main Navbar Bar */}
         <div className={`transition-all duration-200 ${condensed ? 'h-16' : 'h-18'}`}>
-          <div className="_container_47fnf_1 _barInner_aes6y_20 max-w-7xl mx-auto px-4 sm:px-8 h-full flex items-center justify-between gap-4 lg:gap-8">
+          <div className="_container_47fnf_1 _barInner_aes6y_20 w-full px-4 sm:px-6 lg:px-10 h-full flex items-center justify-between gap-4 lg:gap-8">
             
             {/* Brand Logo */}
             <a

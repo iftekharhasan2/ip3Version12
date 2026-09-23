@@ -13,7 +13,7 @@ export const DeliveryCyclePipelineSection: React.FC<DeliveryCyclePipelineSection
   return (
     <div
       id="delivery-cycle-pipeline-wrapper"
-      className={`w-full mt-10 pt-4 border-0 relative z-10 ${className}`}
+      className={`w-full px-0 mx-0 mt-10 pt-4 border-0 relative z-10 ${className}`}
     >
       <DeliveryCyclePipeline onExplorePage={onExplorePage} showDetailCard={false} />
     </div>

@@ -766,7 +766,7 @@ const RESOLUTION_LEVELS = [
   {
     level: 'Level 2',
     label: 'The IP3 impact logic',
-    chain: ['Sense', 'Design', 'Test', 'Implement', 'Learn', 'Scale'],
+    chain: ['Sense', 'Design', 'Test', 'Implement', 'Learn & Scale'],
     body: 'The delivery logic behind engagements. Solutions are understood before they are designed, tested before they are scaled, implemented with the people who must operate them, and improved through evidence.',
   },
   {
@@ -805,7 +805,7 @@ const FRAMEWORK_MODELS = [
   { name: 'Actionable Architecture', body: 'Turn complexity and evidence into something that can be implemented.' },
   { name: 'Poly-Solution Architecture', body: 'Design connected responses for connected problems.' },
   { name: 'Translational Policy Model', body: 'Diagnostics & Research → Policy & Strategy Design → Financing & Bankability → Delivery Architecture → Implementation Support → Learning & Scale' },
-  { name: 'IP3 Impact Logic', body: 'Sense → Design → Test → Implement → Learn → Scale' },
+  { name: 'IP3 Impact Logic', body: 'Sense → Design → Test → Implement → Learn & Scale' },
   { name: 'Dynamic Network Model', body: 'Assemble interdisciplinary, cross-geographic expertise around the specific challenge while retaining the local and institutional intelligence that makes solutions workable.' },
 ];
 

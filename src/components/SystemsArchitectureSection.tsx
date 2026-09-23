@@ -59,13 +59,13 @@ export const SystemsArchitectureSection: React.FC = () => {
       {/* Hero Systems Architecture & Orbital Section */}
       <section
         id="systems-hero"
-        className="relative w-full min-h-[90vh] flex flex-col justify-center pt-16 sm:pt-20 pb-0 px-4 sm:px-8 lg:px-12 max-w-[1500px] mx-auto z-10 bg-[#050a12]"
+        className="relative w-full min-h-[90vh] flex flex-col justify-center pt-16 sm:pt-20 pb-0 px-4 sm:px-6 lg:px-10 z-10 bg-[#050a12]"
       >
-        <div className="flex flex-col items-center w-full my-auto py-4">
+        <div className="flex flex-col items-start w-full my-auto py-4">
           {/* Header Block: Headline & Narrative */}
           <div
             id="systems-hero-header-block"
-            className="flex flex-col items-center text-center max-w-[1500px] w-full mx-auto space-y-4 mb-8 sm:mb-12"
+            className="flex flex-col items-start text-left w-full space-y-4 mb-8 sm:mb-12"
           >
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -88,7 +88,7 @@ export const SystemsArchitectureSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="font-serif text-[49px] font-bold text-white tracking-normal sm:tracking-tight leading-snug sm:leading-[1.2] md:leading-[1.25] py-1.5 overflow-visible w-[1500px] max-w-full"
+              className="font-serif text-[49px] font-bold text-white tracking-normal sm:tracking-tight leading-snug sm:leading-[1.2] md:leading-[1.25] py-1.5 overflow-visible w-full text-left max-w-full"
             >
               <span className="w-auto text-[54px] inline-block">Turning complex policy challenges into</span>{' '}
               <span className="italic font-normal text-[#ff7e67] tracking-normal inline-block">
@@ -102,7 +102,7 @@ export const SystemsArchitectureSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl pt-1 font-normal"
+              className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl pt-1 font-normal text-left"
             >
               IP3 Consulting Limited is a policy and development advisory firm helping multilateral institutions, development partners, governments, businesses and research organizations design better policies, mobilize investment, strengthen institutions and deliver measurable results.
             </motion.p>
@@ -113,7 +113,7 @@ export const SystemsArchitectureSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="flex flex-wrap items-center justify-center gap-4 pt-4"
+              className="flex flex-wrap items-center justify-start gap-4 pt-4"
             >
               <button
                 id="btn-discuss-assignment"
@@ -147,7 +147,7 @@ export const SystemsArchitectureSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.4 }}
-              className="mt-6 px-5 sm:px-7 py-2 sm:py-2.5 rounded-full bg-[#f5f5f5] border border-gray-200/90 shadow-sm flex flex-nowrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-[13px] font-medium tracking-wide whitespace-nowrap max-w-full overflow-x-auto no-scrollbar"
+              className="mt-6 px-5 sm:px-7 py-2 sm:py-2.5 rounded-full bg-[#f5f5f5] border border-gray-200/90 shadow-sm flex flex-nowrap items-center justify-start gap-2 sm:gap-3 text-xs sm:text-[13px] font-medium tracking-wide whitespace-nowrap max-w-full overflow-x-auto no-scrollbar"
             >
               {[
                 'Policy & Economic Advisory',
@@ -170,7 +170,7 @@ export const SystemsArchitectureSection: React.FC = () => {
           </div>
 
           {/* Duplicate of Header Block */}
-          <div className="flex flex-col items-center text-center max-w-[1500px] w-full mx-auto space-y-4 mb-8 sm:mb-12">
+          <div className="flex flex-col items-start text-left w-full space-y-4 mb-8 sm:mb-12">
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -188,7 +188,7 @@ export const SystemsArchitectureSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="font-serif text-[49px] font-bold text-white tracking-normal sm:tracking-tight leading-snug sm:leading-[1.2] md:leading-[1.25] py-1.5 overflow-visible w-[1500px] max-w-full"
+              className="font-serif text-[49px] font-bold text-white tracking-normal sm:tracking-tight leading-snug sm:leading-[1.2] md:leading-[1.25] py-1.5 overflow-visible w-full text-left max-w-full"
             >
               <span className="block w-auto text-[54px]">From evidence to decisions.</span>
               <span className="block italic font-normal text-[#00ff00] tracking-normal mt-1">
@@ -201,7 +201,7 @@ export const SystemsArchitectureSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-3xl pt-1 font-normal"
+              className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-3xl pt-1 font-normal text-left"
             >
               Development challenges rarely fit within one ministry, one sector or one financing instrument. IP3 brings together economics, public policy, finance, institutional analysis, technology and implementation expertise to help clients move through the full decision cycle.
             </motion.p>
@@ -234,9 +234,9 @@ export const SystemsArchitectureSection: React.FC = () => {
       {/* What Clients Hire IP3 to Deliver Section */}
       <section
         id="client-deliverables-section"
-        className="relative w-full pt-0 pb-16 sm:pb-24 px-4 sm:px-8 lg:px-12 max-w-[1500px] mx-auto z-10 bg-[#050a12] border-t border-slate-800/80"
+        className="relative w-full pt-0 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-10 z-10 bg-[#050a12] border-t border-slate-800/80"
       >
-        <div className="flex flex-col items-center text-center max-w-[1500px] w-full mx-auto space-y-4 mb-6">
+        <div className="flex flex-col items-start text-left w-full space-y-4 mb-8">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -254,142 +254,158 @@ export const SystemsArchitectureSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-serif text-3xl sm:text-4xl md:text-[49px] font-bold text-white tracking-normal sm:tracking-tight leading-snug sm:leading-[1.2] md:leading-[1.25] py-1.5 overflow-visible w-[1500px] max-w-full"
+            className="font-serif text-3xl sm:text-4xl md:text-[49px] font-bold text-white tracking-normal sm:tracking-tight leading-snug sm:leading-[1.2] md:leading-[1.25] py-1.5 overflow-visible w-full text-left max-w-full"
           >
             <span className="block w-auto text-3xl sm:text-4xl md:text-[54px]">What clients hire IP3 to deliver.</span>
             <span className="block text-2xl sm:text-3xl font-normal text-slate-300 italic tracking-normal mt-2">
               (Six cards, each = client problem + deliverables)
             </span>
           </motion.h2>
+        </div>
 
-          <div className="w-full max-w-5xl space-y-6 pt-6 text-left">
-            <motion.p
-              id="policy-strategy-advisory-paragraph"
+        <motion.div
+          id="policy-strategy-advisory-paragraph"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-left w-full text-lg sm:text-xl md:text-2xl leading-relaxed text-slate-200"
+              className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start py-8 sm:py-10 border-b border-slate-800/80"
             >
-              <strong className="font-bold text-white tracking-tight">
-                Policy, Economics & Strategy Advisory
-              </strong>{' '}
-              <span className="text-slate-400 font-light">—</span>{' '}
-              <span className="italic text-[#38d9c0] font-medium">
-                "We need to understand the problem and choose a defensible course of action."
-              </span>{' '}
-              <span className="text-[#38d9c0] font-bold mx-1">→</span>{' '}
-              <span className="text-slate-300 font-normal">
-                diagnostics, modeling, political-economy analysis, regulatory reviews, sector strategies, fiscal and cost-benefit analysis, reform road maps.
-              </span>
-            </motion.p>
+              <div className="lg:col-span-5 flex flex-col space-y-2.5">
+                <h3 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-medium text-white tracking-tight leading-tight">
+                  Policy, Economics &amp; Strategy Advisory
+                </h3>
+                <p className="text-slate-400 text-base sm:text-lg font-normal leading-relaxed max-w-md">
+                  We need to understand the problem and choose a defensible course of action.
+                </p>
+              </div>
+              <div className="lg:col-span-7 flex flex-col justify-end self-end lg:self-end pt-1 lg:pt-0 pb-1">
+                <ul className="list-disc pl-5 marker:text-[#38d9c0] text-[#38d9c0] space-y-2.5 sm:space-y-3 text-base sm:text-[17px] leading-relaxed mt-auto">
+                  <li>Diagnostics, modeling, political-economy analysis, and regulatory reviews</li>
+                  <li>Sector strategies, fiscal and cost-benefit analysis, and reform road maps</li>
+                </ul>
+              </div>
+            </motion.div>
 
-            <motion.p
+            <motion.div
               id="program-project-design-paragraph"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="text-left w-full text-lg sm:text-xl md:text-2xl leading-relaxed text-slate-200"
+              className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start py-8 sm:py-10 border-b border-slate-800/80"
             >
-              <strong className="font-bold text-white tracking-tight">
-                Program & Project Design
-              </strong>{' '}
-              <span className="text-slate-400 font-light">—</span>{' '}
-              <span className="italic text-[#38d9c0] font-medium">
-                "We have a mandate or funding window but need an implementable program."
-              </span>{' '}
-              <span className="text-[#38d9c0] font-bold mx-1">→</span>{' '}
-              <span className="text-slate-300 font-normal">
-                feasibility studies, theories of change, concepts, results frameworks, implementation and financing plans, risk registers, project-preparation support.
-              </span>
-            </motion.p>
+              <div className="lg:col-span-5 flex flex-col space-y-2.5">
+                <h3 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-medium text-white tracking-tight leading-tight">
+                  Program &amp; Project Design
+                </h3>
+                <p className="text-slate-400 text-base sm:text-lg font-normal leading-relaxed max-w-md">
+                  We have a mandate or funding window but need an implementable program.
+                </p>
+              </div>
+              <div className="lg:col-span-7 flex flex-col justify-end self-end lg:self-end pt-1 lg:pt-0 pb-1">
+                <ul className="list-disc pl-5 marker:text-[#38d9c0] text-[#38d9c0] space-y-2.5 sm:space-y-3 text-base sm:text-[17px] leading-relaxed mt-auto">
+                  <li>Feasibility studies, theories of change, concept notes, and results frameworks</li>
+                  <li>Implementation and financing plans, risk registers, and project-preparation support</li>
+                </ul>
+              </div>
+            </motion.div>
 
-            <motion.p
+            <motion.div
               id="finance-capital-mobilization-paragraph"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-left w-full text-lg sm:text-xl md:text-2xl leading-relaxed text-slate-200"
+              className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start py-8 sm:py-10 border-b border-slate-800/80"
             >
-              <strong className="font-bold text-white tracking-tight">
-                Development Finance & Private Capital Mobilization
-              </strong>{' '}
-              <span className="text-slate-400 font-light">—</span>{' '}
-              <span className="italic text-[#38d9c0] font-medium">
-                "Public funding is insufficient; how do we make this investable?"
-              </span>{' '}
-              <span className="text-[#38d9c0] font-bold mx-1">→</span>{' '}
-              <span className="text-slate-300 font-normal">
-                investment cases, blended-finance strategy, PPP advisory, financial models, bankability assessments, climate-finance strategy, pipelines, market sounding, de-risking.
-              </span>
-            </motion.p>
+              <div className="lg:col-span-5 flex flex-col space-y-2.5">
+                <h3 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-medium text-white tracking-tight leading-tight">
+                  Development Finance &amp; Private Capital Mobilization
+                </h3>
+                <p className="text-slate-400 text-base sm:text-lg font-normal leading-relaxed max-w-md">
+                  Public funding is insufficient; how do we make this investable?
+                </p>
+              </div>
+              <div className="lg:col-span-7 flex flex-col justify-end self-end lg:self-end pt-1 lg:pt-0 pb-1">
+                <ul className="list-disc pl-5 marker:text-[#38d9c0] text-[#38d9c0] space-y-2.5 sm:space-y-3 text-base sm:text-[17px] leading-relaxed mt-auto">
+                  <li>Investment cases, blended-finance strategies, PPP advisory, and financial models</li>
+                  <li>Bankability assessments, climate-finance pipelines, market sounding, and de-risking</li>
+                </ul>
+              </div>
+            </motion.div>
 
-            <motion.p
+            <motion.div
               id="institutions-governance-delivery-paragraph"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.25 }}
-              className="text-left w-full text-lg sm:text-xl md:text-2xl leading-relaxed text-slate-200"
+              className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start py-8 sm:py-10 border-b border-slate-800/80"
             >
-              <strong className="font-bold text-white tracking-tight">
-                Institutions, Governance & Delivery
-              </strong>{' '}
-              <span className="text-slate-400 font-light">—</span>{' '}
-              <span className="italic text-[#38d9c0] font-medium">
-                "A policy exists, but institutions cannot implement it consistently."
-              </span>{' '}
-              <span className="text-[#38d9c0] font-bold mx-1">→</span>{' '}
-              <span className="text-slate-300 font-normal">
-                institutional diagnostics, governance frameworks, PFM reform, delivery models, process redesign, capacity development, change management.
-              </span>
-            </motion.p>
+              <div className="lg:col-span-5 flex flex-col space-y-2.5">
+                <h3 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-medium text-white tracking-tight leading-tight">
+                  Institutions, Governance &amp; Delivery
+                </h3>
+                <p className="text-slate-400 text-base sm:text-lg font-normal leading-relaxed max-w-md">
+                  A policy exists, but institutions cannot implement it consistently.
+                </p>
+              </div>
+              <div className="lg:col-span-7 flex flex-col justify-end self-end lg:self-end pt-1 lg:pt-0 pb-1">
+                <ul className="list-disc pl-5 marker:text-[#38d9c0] text-[#38d9c0] space-y-2.5 sm:space-y-3 text-base sm:text-[17px] leading-relaxed mt-auto">
+                  <li>Institutional diagnostics, governance frameworks, and PFM reform</li>
+                  <li>Delivery models, process redesign, capacity development, and change management</li>
+                </ul>
+              </div>
+            </motion.div>
 
-            <motion.p
+            <motion.div
               id="mel-impact-paragraph"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-left w-full text-lg sm:text-xl md:text-2xl leading-relaxed text-slate-200"
+              className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start py-8 sm:py-10 border-b border-slate-800/80"
             >
-              <strong className="font-bold text-white tracking-tight">
-                Monitoring, Evaluation, Learning & Impact
-              </strong>{' '}
-              <span className="text-slate-400 font-light">—</span>{' '}
-              <span className="italic text-[#38d9c0] font-medium">
-                "We need to know what is working, why, for whom, and whether it can scale."
-              </span>{' '}
-              <span className="text-[#38d9c0] font-bold mx-1">→</span>{' '}
-              <span className="text-slate-300 font-normal">
-                MEL frameworks, baselines, process/impact evaluations, learning agendas, outcome harvesting, dashboards, adaptive management.
-              </span>
-            </motion.p>
+              <div className="lg:col-span-5 flex flex-col space-y-2.5">
+                <h3 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-medium text-white tracking-tight leading-tight">
+                  Monitoring, Evaluation, Learning &amp; Impact
+                </h3>
+                <p className="text-slate-400 text-base sm:text-lg font-normal leading-relaxed max-w-md">
+                  We need to know what is working, why, for whom, and whether it can scale.
+                </p>
+              </div>
+              <div className="lg:col-span-7 flex flex-col justify-end self-end lg:self-end pt-1 lg:pt-0 pb-1">
+                <ul className="list-disc pl-5 marker:text-[#38d9c0] text-[#38d9c0] space-y-2.5 sm:space-y-3 text-base sm:text-[17px] leading-relaxed mt-auto">
+                  <li>MEL frameworks, baselines, process and impact evaluations, and learning agendas</li>
+                  <li>Outcome harvesting, real-time dashboards, and adaptive management systems</li>
+                </ul>
+              </div>
+            </motion.div>
 
-            <motion.p
+            <motion.div
               id="data-digital-ai-paragraph"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.35 }}
-              className="text-left w-full text-lg sm:text-xl md:text-2xl leading-relaxed text-slate-200"
+              className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start py-8 sm:py-10 border-b border-slate-800/80"
             >
-              <strong className="font-bold text-white tracking-tight">
-                Data, Digital & Responsible AI
-              </strong>{' '}
-              <span className="text-slate-400 font-light">—</span>{' '}
-              <span className="italic text-[#38d9c0] font-medium">
-                "We need to modernize systems without creating new governance, exclusion or accountability risks."
-              </span>{' '}
-              <span className="text-[#38d9c0] font-bold mx-1">→</span>{' '}
-              <span className="text-slate-300 font-normal">
-                DPI diagnostics, digital-government strategy, data governance, interoperability, AI readiness and governance, service design, digital inclusion.
-              </span>
-            </motion.p>
-          </div>
-        </div>
+              <div className="lg:col-span-5 flex flex-col space-y-2.5">
+                <h3 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-medium text-white tracking-tight leading-tight">
+                  Data, Digital &amp; Responsible AI
+                </h3>
+                <p className="text-slate-400 text-base sm:text-lg font-normal leading-relaxed max-w-md">
+                  We need to modernize systems without creating new governance, exclusion or accountability risks.
+                </p>
+              </div>
+              <div className="lg:col-span-7 flex flex-col justify-end self-end lg:self-end pt-1 lg:pt-0 pb-1">
+                <ul className="list-disc pl-5 marker:text-[#38d9c0] text-[#38d9c0] space-y-2.5 sm:space-y-3 text-base sm:text-[17px] leading-relaxed mt-auto">
+                  <li>DPI diagnostics, digital-government strategies, and data governance frameworks</li>
+                  <li>Interoperability standards, AI readiness and governance, and inclusive service design</li>
+                </ul>
+              </div>
+            </motion.div>
       </section>
 
       {/* Orbital System (Built for Complexity) Section */}

@@ -132,44 +132,60 @@ export default function InstitutionalEngagementsSection({
   return (
     <div id="institutional-engagements-pipeline-wrapper" className={`w-full ${className}`}>
       {/* Section Eyebrow / Heading */}
-      <div className="w-full max-w-5xl mx-auto pt-8 sm:pt-10 pb-3 flex items-center justify-between border-t border-slate-800/80">
+      <div className="w-full mx-auto pt-8 sm:pt-10 pb-3 flex items-center justify-between border-t border-slate-800/80">
         <span className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.22em] text-[#38d9c0] uppercase block">
           INSTITUTIONAL ADVISORY & REFORM PIPELINE
         </span>
       </div>
 
-      {/* Styled container matching div#sector-systems-items-container exactly without hover */}
+      {/* Styled container matching client deliverables section */}
       <div
         id="sector-systems-items-container-engagements"
-        className="w-full max-w-5xl space-y-6 pt-4 pb-14 text-left mx-auto"
+        className="w-full text-left mx-auto divide-y divide-slate-800/80"
       >
         {ADDITIONAL_ENGAGEMENTS.map((item, itemIdx) => (
-          <motion.p
+          <motion.div
             key={item.id}
             id={item.id}
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.05 * itemIdx }}
-            className="text-left w-full text-lg sm:text-xl md:text-2xl leading-relaxed text-slate-200"
+            transition={{ duration: 0.6, delay: 0.05 * itemIdx }}
+            className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start py-8 sm:py-10 border-b border-slate-800/80"
           >
-            <strong className="font-bold text-white tracking-tight">
-              {item.title}
-            </strong>{' '}
-            <span className="text-slate-400 font-light">—</span>{' '}
-            <span className="italic text-[#38d9c0] font-medium">
-              "{item.quote}"
-            </span>{' '}
-            <span className="text-[#38d9c0] font-bold mx-1">→</span>{' '}
-            <span className="text-slate-300 font-normal">
-              {item.deliverables}
-            </span>
-            {item.tags && (
-              <span className="inline-block mt-1 sm:mt-0 sm:ml-2.5 px-2.5 py-0.5 rounded-full text-xs font-mono font-medium tracking-wide bg-[#38d9c0]/15 text-[#38d9c0] border border-[#38d9c0]/30 align-middle">
-                {item.tags}
-              </span>
-            )}
-          </motion.p>
+            <div className="lg:col-span-5 flex flex-col space-y-2.5">
+              <h3 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-medium text-white tracking-tight leading-tight">
+                {item.title}
+              </h3>
+              <p className="text-slate-400 text-base sm:text-lg font-normal leading-relaxed max-w-md">
+                {item.fullEngagement?.summary || item.quote}
+              </p>
+              {item.tags && (
+                <div className="pt-2">
+                  <span className="inline-block px-2.5 py-0.5 rounded-full text-xs font-mono font-medium tracking-wide bg-[#38d9c0]/15 text-[#38d9c0] border border-[#38d9c0]/30">
+                    {item.tags}
+                  </span>
+                </div>
+              )}
+            </div>
+            <div className="lg:col-span-7 flex flex-col justify-end self-end lg:self-end pt-1 lg:pt-0 pb-1">
+              <ul className="list-disc pl-5 marker:text-[#38d9c0] text-[#38d9c0] space-y-2.5 sm:space-y-3 text-base sm:text-[17px] leading-relaxed mt-auto">
+                {item.fullEngagement?.deliverables?.map((deliv, dIdx) => (
+                  <li key={dIdx} className="text-slate-200">
+                    <span className="text-[#38d9c0] font-medium">{deliv}</span>
+                  </li>
+                )) || (
+                  <li className="text-slate-200">{item.deliverables}</li>
+                )}
+                {item.fullEngagement?.result && (
+                  <li className="text-slate-300">
+                    <span className="text-slate-400 font-normal">Impact outcome: </span>
+                    <span className="italic">{item.fullEngagement.result}</span>
+                  </li>
+                )}
+              </ul>
+            </div>
+          </motion.div>
         ))}
       </div>
     </div>

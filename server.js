@@ -18,7 +18,7 @@ import { fileURLToPath } from 'url';
 import apiApp from './server/app.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 const isProd = process.env.NODE_ENV === 'production';
 
 const app = express();

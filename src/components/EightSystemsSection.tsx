@@ -5,6 +5,7 @@ import { SystemItem, SystemOverlap } from '../types';
 import { EightSystemsHero } from './EightSystemsHero';
 import { OverlapModal } from './OverlapModal';
 import { SystemDetailPanel } from './SystemDetailPanel';
+import { DeliveryCyclePipelineSection } from './DeliveryCyclePipelineSection';
 
 export const EightSystemsSection: React.FC = () => {
   const { data } = useCMS();
@@ -74,6 +75,9 @@ export const EightSystemsSection: React.FC = () => {
             onSelectOverlap={handleSelectOverlap}
           />
         )}
+
+        {/* Delivery Cycle Pipeline Section */}
+        <DeliveryCyclePipelineSection />
       </div>
 
       {/* Cross-Domain Overlap Modal */}

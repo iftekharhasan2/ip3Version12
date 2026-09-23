@@ -23,9 +23,9 @@ interface ThemeTypographyStudioProps {
 }
 
 const HEADER_FONTS = [
-  { id: 'Archivo', name: 'Archivo (Default)', style: 'Sovereign Precision Modern Sans' },
+  { id: 'Newsreader', name: 'Newsreader (Default)', style: 'Refined Editorial Academic Serif' },
+  { id: 'Archivo', name: 'Archivo', style: 'Sovereign Precision Modern Sans' },
   { id: 'Plus Jakarta Sans', name: 'Plus Jakarta Sans', style: 'Geometric Clean & Contemporary' },
-  { id: 'Newsreader', name: 'Newsreader', style: 'Refined Editorial Academic Serif' },
   { id: 'Playfair Display', name: 'Playfair Display', style: 'High-Contrast Luxury Serif' },
   { id: 'Outfit', name: 'Outfit', style: 'Minimal Architectural Sans' },
   { id: 'Inter', name: 'Inter', style: 'Clean Neutral Enterprise UI' },
@@ -38,10 +38,10 @@ const HEADER_FONTS = [
 ];
 
 const BODY_FONTS = [
-  { id: 'Plus Jakarta Sans', name: 'Plus Jakarta Sans (Default)', style: 'Balanced & High Legibility' },
+  { id: 'Newsreader', name: 'Newsreader (Default)', style: 'Literary Long-form Serif' },
+  { id: 'Plus Jakarta Sans', name: 'Plus Jakarta Sans', style: 'Balanced & High Legibility' },
   { id: 'Inter', name: 'Inter', style: 'Universal Enterprise Standard' },
   { id: 'Roboto', name: 'Roboto', style: 'Engineered Clean Legibility' },
-  { id: 'Newsreader', name: 'Newsreader', style: 'Literary Long-form Serif' },
   { id: 'Archivo', name: 'Archivo', style: 'Technical Unified Modern Sans' },
   { id: 'Outfit', name: 'Outfit', style: 'Light Contemporary Feel' },
 ];
@@ -336,11 +336,11 @@ export const ThemeTypographyStudio: React.FC<ThemeTypographyStudioProps> = ({
                 Header Font Family
               </label>
               <span className="text-[11px] font-mono text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded">
-                {currentTheme.headerFont || 'Archivo'}
+                {currentTheme.headerFont || 'Newsreader'}
               </span>
             </div>
             <select
-              value={currentTheme.headerFont || 'Archivo'}
+              value={currentTheme.headerFont || 'Newsreader'}
               onChange={(e) => handleUpdate({ headerFont: e.target.value })}
               className="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg text-xs text-white cursor-pointer"
             >
@@ -580,11 +580,11 @@ export const ThemeTypographyStudio: React.FC<ThemeTypographyStudioProps> = ({
           </h4>
           <div className="flex items-center gap-2">
             <span className="text-[11px] font-mono text-slate-400">
-              Header: <span className="text-amber-400">{currentTheme.headerFont || 'Archivo'}</span> ({Math.round(currentHeaderScale * 100)}%)
+              Header: <span className="text-amber-400">{currentTheme.headerFont || 'Newsreader'}</span> ({Math.round(currentHeaderScale * 100)}%)
             </span>
             <span className="text-slate-700">|</span>
             <span className="text-[11px] font-mono text-slate-400">
-              Body: <span className="text-sky-400">{currentTheme.bodyFont || 'Plus Jakarta Sans'}</span> ({Math.round(currentBodyScale * 100)}%)
+              Body: <span className="text-sky-400">{currentTheme.bodyFont || 'Newsreader'}</span> ({Math.round(currentBodyScale * 100)}%)
             </span>
           </div>
         </div>
@@ -627,9 +627,9 @@ export const ThemeTypographyStudio: React.FC<ThemeTypographyStudioProps> = ({
             {/* Rendered H1 */}
             <h1
               style={{
-                fontFamily: `'${currentTheme.headerFont || 'Archivo'}', sans-serif`,
-                fontWeight: currentTheme.headerFontWeight || '700',
-                letterSpacing: currentTheme.headerLetterSpacing || '0em',
+                fontFamily: `'${currentTheme.headerFont || 'Newsreader'}', 'Playfair Display', Georgia, serif`,
+                fontWeight: currentTheme.headerFontWeight || '400',
+                letterSpacing: currentTheme.headerLetterSpacing || '-0.02em',
                 textTransform: (currentTheme.headerTransform || 'none') as any,
                 fontSize: `calc(2rem * ${currentHeaderScale})`,
                 color: currentTheme.textColor || '#f8fafc',
@@ -642,9 +642,9 @@ export const ThemeTypographyStudio: React.FC<ThemeTypographyStudioProps> = ({
             {/* Rendered H2 */}
             <h2
               style={{
-                fontFamily: `'${currentTheme.headerFont || 'Archivo'}', sans-serif`,
-                fontWeight: currentTheme.headerFontWeight || '700',
-                letterSpacing: currentTheme.headerLetterSpacing || '0em',
+                fontFamily: `'${currentTheme.headerFont || 'Newsreader'}', 'Playfair Display', Georgia, serif`,
+                fontWeight: currentTheme.headerFontWeight || '400',
+                letterSpacing: currentTheme.headerLetterSpacing || '-0.02em',
                 textTransform: (currentTheme.headerTransform || 'none') as any,
                 fontSize: `calc(1.25rem * ${currentHeaderScale})`,
                 color: currentTheme.accentColor || '#2dd4bf',

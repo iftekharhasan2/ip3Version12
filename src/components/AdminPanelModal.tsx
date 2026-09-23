@@ -557,8 +557,9 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({ isOpen, onClos
                                 }}
                                 className="w-full px-2.5 py-1.5 bg-slate-900 border border-slate-700 rounded text-xs text-white"
                               >
-                                <option value="">Global Theme ({data.themeConfig?.headerFont || 'Archivo'})</option>
+                                <option value="">Global Theme ({data.themeConfig?.headerFont || 'Newsreader'})</option>
                                 <optgroup label="Standard Fonts">
+                                  <option value="Newsreader">Newsreader (Default Editorial Serif)</option>
                                   <option value="Archivo">Archivo</option>
                                   <option value="Plus Jakarta Sans">Plus Jakarta Sans</option>
                                   <option value="Newsreader">Newsreader (Editorial Serif)</option>

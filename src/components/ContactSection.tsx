@@ -16,7 +16,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialTab = 'me
   return (
     <section id="contact-advisory" className="w-full font-sans bg-[#050a12] text-slate-100">
       {/* Top Dark Hero / Header with Blueprint Grid */}
-      <div className="w-full bg-gradient-to-b from-[#050a12] via-[#081220] to-[#050a12] text-slate-100 pt-16 pb-16 px-6 sm:px-12 lg:px-16 border-b border-slate-800 relative overflow-hidden">
+      <div className="w-full bg-gradient-to-b from-[#050a12] via-[#081220] to-[#050a12] text-slate-100 pt-16 pb-16 px-4 sm:px-6 lg:px-10 border-b border-slate-800 relative overflow-hidden">
         {/* Subtle Background Grid Pattern */}
         <div 
           className="absolute inset-0 opacity-[0.05] pointer-events-none"
@@ -26,7 +26,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialTab = 'me
           }}
         />
 
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="w-full relative z-10">
           <div className="flex items-center gap-2 mb-4">
             <span className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.22em] text-[#38d9c0] uppercase">
               Ready to work with IP3?
@@ -42,8 +42,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialTab = 'me
       </div>
 
       {/* Main Content Area: 2-Column Form & Sidebar */}
-      <div className="bg-[#050a12] py-12 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="bg-[#050a12] py-12 px-4 sm:px-6 lg:px-10 border-b border-slate-800">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Form & Tabs */}
           <div className="lg:col-span-7 xl:col-span-8">
             {activeTab === 'message' ? (
