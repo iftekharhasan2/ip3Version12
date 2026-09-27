@@ -266,8 +266,8 @@ export const EightSystemsHero: React.FC<EightSystemsHeroProps> = ({
             >
               <div className="w-full">
                 <h1
-                  style={{ fontSize: '71px' }}
-                  className={`${getFontClass()} leading-[1.04] sm:leading-[1.02] tracking-[-0.025em] font-normal text-slate-100`}
+                  style={{ fontSize: '83px' }}
+                  className={`${getFontClass()} leading-[1.0] sm:leading-[0.98] tracking-[-0.03em] font-normal text-slate-100`}
                 >
                   <span className="inline">Eight sectors. One </span>
                   <span className="inline text-slate-300">integrated delivery model.</span>
