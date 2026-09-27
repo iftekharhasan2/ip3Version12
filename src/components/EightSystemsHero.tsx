@@ -144,24 +144,24 @@ export const EightSystemsHero: React.FC<EightSystemsHeroProps> = ({
         }}
         className={`group relative w-full flex flex-col justify-between text-left rounded-xl transition-all duration-200 cursor-pointer select-none outline-none overflow-hidden border ${
           isSelected
-            ? 'bg-[#0f1d33] border-[#ff7e67] shadow-xl ring-1 ring-[#ff7e67]/40 text-white -translate-y-0.5'
+            ? 'bg-white border-[#b84a32] ring-2 ring-[#b84a32]/60 shadow-lg text-slate-900 -translate-y-1'
             : hasActive
-            ? 'bg-[#081324]/60 border-slate-800/60 text-slate-400 opacity-75'
+            ? 'bg-white/80 border-slate-200 opacity-60 hover:opacity-90 shadow-sm text-slate-700'
             : isHovered
-            ? 'bg-[#0d1a2d] border-slate-700 text-white shadow-lg -translate-y-0.5'
-            : 'bg-[#081324]/90 hover:bg-[#0c182b] border-slate-800/90 text-slate-200 hover:text-white'
+            ? 'bg-white border-slate-300 shadow-md -translate-y-1 text-slate-900'
+            : 'bg-white hover:bg-slate-50/80 border-slate-200/90 shadow-sm hover:shadow-md hover:-translate-y-0.5 text-slate-800'
         }`}
         style={{
           boxShadow: isSelected
-            ? `0 0 28px ${system.glowColor.replace('0.7', '0.22')}, inset 0 1px 1px rgba(255,255,255,0.12)`
+            ? '0 12px 28px -6px rgba(184, 74, 50, 0.22), 0 4px 12px rgba(0,0,0,0.06)'
             : (!hasActive && isHovered)
-            ? `0 10px 24px -6px rgba(5,10,18,0.7), 0 0 18px ${system.glowColor.replace('0.7', '0.2')}`
-            : '0 2px 8px rgba(0,0,0,0.2)',
+            ? '0 10px 24px -6px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.04)'
+            : '0 2px 6px rgba(0,0,0,0.04)',
         }}
       >
         {/* Top Image */}
         {displayImage && (
-          <div className="relative w-full h-44 sm:h-48 overflow-hidden bg-slate-900 shrink-0 border-b border-slate-800/80">
+          <div className="relative w-full h-44 sm:h-48 overflow-hidden bg-slate-100 shrink-0 border-b border-slate-100">
             <img
               src={displayImage}
               alt={displayTitle}
@@ -173,13 +173,13 @@ export const EightSystemsHero: React.FC<EightSystemsHeroProps> = ({
         )}
 
         {/* Card Content Container */}
-        <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between text-left w-full">
+        <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between bg-white text-left w-full">
           <div>
-            {/* Category Eyebrow with original system color */}
+            {/* Category Eyebrow with system color */}
             <p
               style={{
                 fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif",
-                color: system.color || '#ff7e67',
+                color: system.color || '#b84a32',
               }}
               className="text-[11px] font-bold tracking-[0.14em] uppercase mb-2.5"
             >
@@ -189,13 +189,7 @@ export const EightSystemsHero: React.FC<EightSystemsHeroProps> = ({
             {/* Card Title */}
             <h4
               style={{ fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" }}
-              className={`text-lg sm:text-[20px] font-bold leading-[1.25] tracking-tight mb-3 ${
-                isSelected
-                  ? 'text-white'
-                  : hasActive
-                  ? 'text-slate-300'
-                  : 'text-slate-100 group-hover:text-white'
-              }`}
+              className="text-lg sm:text-[20px] font-bold leading-[1.25] tracking-tight text-slate-900 group-hover:text-black mb-3"
             >
               {displayTitle}
             </h4>
@@ -203,23 +197,17 @@ export const EightSystemsHero: React.FC<EightSystemsHeroProps> = ({
             {/* Card Summary Description */}
             <p
               style={{ fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" }}
-              className={`text-[13px] sm:text-[13.5px] font-normal leading-[1.6] line-clamp-3 sm:line-clamp-4 mb-5 ${
-                isSelected
-                  ? 'text-slate-300'
-                  : hasActive
-                  ? 'text-slate-500'
-                  : 'text-slate-400 group-hover:text-slate-300'
-              }`}
+              className="text-[13px] sm:text-[13.5px] font-normal leading-[1.6] text-slate-600 line-clamp-3 sm:line-clamp-4 mb-5"
             >
               {displaySummary}
             </p>
           </div>
 
-          {/* Explore the work Link/Action with original theme colors */}
+          {/* Explore the work Link/Action */}
           <div className="pt-2 mt-auto">
             <span
               style={{ fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" }}
-              className="inline-flex items-center gap-1.5 text-[13px] font-bold text-slate-200 border-b border-slate-700 pb-0.5 group-hover:text-[#ff7e67] group-hover:border-[#ff7e67] transition-colors"
+              className="inline-flex items-center gap-1.5 text-[13px] font-bold text-slate-900 border-b border-slate-900 pb-0.5 group-hover:text-[#b84a32] group-hover:border-[#b84a32] transition-colors"
             >
               <span>Explore the work</span>
               <span className="text-[14px] leading-none select-none">↗</span>
@@ -234,11 +222,10 @@ export const EightSystemsHero: React.FC<EightSystemsHeroProps> = ({
     <div className="relative w-full select-text transition-all duration-300">
       {/* Background ambient lighting subtle glow */}
       <div
-        className="pointer-events-none absolute -left-20 top-24 w-72 h-72 rounded-full blur-3xl"
+        className="pointer-events-none absolute -left-20 top-24 w-72 h-72 rounded-full blur-3xl opacity-20"
         style={{
-          opacity: 0.2 * (glowIntensity ?? 1),
           background:
-            'radial-gradient(circle, rgba(255,126,103,0.2) 0%, rgba(45,212,191,0.1) 70%, transparent 100%)',
+            'radial-gradient(circle, rgba(255,126,103,0.12) 0%, rgba(45,212,191,0.08) 70%, transparent 100%)',
         }}
       />
 
@@ -267,10 +254,10 @@ export const EightSystemsHero: React.FC<EightSystemsHeroProps> = ({
               <div className="w-full">
                 <h1
                   style={{ fontSize: '83px' }}
-                  className={`${getFontClass()} leading-[1.0] sm:leading-[0.98] tracking-[-0.03em] font-normal text-slate-100`}
+                  className={`${getFontClass()} leading-[1.0] sm:leading-[0.98] tracking-[-0.03em] font-normal text-slate-900`}
                 >
                   <span className="inline">Eight sectors. One </span>
-                  <span className="inline text-slate-300">integrated delivery model.</span>
+                  <span className="inline text-slate-500">integrated delivery model.</span>
                 </h1>
               </div>
             </div>

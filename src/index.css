@@ -1,12 +1,72 @@
 @import "tailwindcss";
 
+/* ========================================================================= */
+/* CSS FONT SETUP                                                            */
+/* ========================================================================= */
+@font-face {
+  font-family: Fraunces;
+  src: url("/assets/fraunces-latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Fraunces;
+  src: url("/assets/fraunces-italic-latin.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("/assets/inter-latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("/assets/ibm-plex-mono-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
-  --font-header-family: 'Newsreader', 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
-  --font-body-family: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif;
+  --font-display: Fraunces, Georgia, serif;
+  --font-body: Inter, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  /* Reusable Type Tokens */
+  --type-hero: clamp(4rem, 6.8vw, 7.5rem);
+  --type-h1: clamp(3.7rem, 7.1vw, 7.1rem);
+  --type-h2: clamp(2.6rem, 4.1vw, 4.6rem);
+  --type-h3: 1.7rem;
+  --type-body: 1rem;
+  --type-intro: 1.06rem;
+  --type-small: .875rem;
+  --type-micro: .75rem;
+  --type-figure: 8rem;
+
+  --leading-tight: 1.03;
+  --leading-heading: 1.12;
+  --leading-body: 1.6;
+  --leading-loose: 1.7;
+
+  --tracking-hero: -0.055em;
+  --tracking-heading: -0.035em;
+  --tracking-figure: -0.08em;
+  --tracking-mono: .045em;
+  --tracking-eyebrow: .12em;
+
+  --font-header-family: var(--font-display);
+  --font-body-family: var(--font-body);
   --header-scale: 1;
   --body-scale: 1;
   --font-header-weight: 400;
-  --font-header-tracking: -0.015em;
+  --font-header-tracking: var(--tracking-heading);
   --font-header-transform: none;
 
   --bg: #050a12;
@@ -44,14 +104,16 @@
 }
 
 @theme {
-  --font-sans: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif;
-  --font-serif: 'Newsreader', 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
-  --font-display: 'Newsreader', 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --font-archivo: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif;
-  --font-heading: 'Newsreader', 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
-  --font-header: 'Newsreader', 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
-  --font-cardo: 'Newsreader', 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+  --font-fraunces: var(--font-display);
+  --font-inter: var(--font-body);
+  --font-archivo: var(--font-body);
+  --font-heading: var(--font-display);
+  --font-header: var(--font-display);
+  --font-cardo: var(--font-display);
 
   --color-brand-bg: var(--bg);
   --color-brand-coral: var(--coral);
@@ -61,98 +123,145 @@
   --color-brand-slate: var(--slate);
 }
 
-@layer base {
-  *, *::before, *::after {
-    font-family: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif;
+/* ========================================================================= */
+/* REUSABLE CLASSES & ROLES                                                  */
+/* ========================================================================= */
+body {
+  font-family: var(--font-body);
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+  background-color: var(--bg);
+  color: var(--white);
+}
+
+.display,
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-heading);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--type-hero);
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-hero);
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: var(--type-h1);
+  font-weight: 400;
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-heading);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: var(--type-h2);
+  font-weight: 400;
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-heading);
+}
+
+.intro {
+  font-family: var(--font-body);
+  font-size: var(--type-intro);
+  line-height: var(--leading-loose);
+}
+
+.small {
+  font-family: var(--font-body);
+  font-size: var(--type-small);
+  line-height: 1.5;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--type-micro);
+  line-height: 1.5;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--type-micro);
+  line-height: 1.5;
+  letter-spacing: var(--tracking-mono);
+}
+
+.figure {
+  font-family: var(--font-display);
+  font-size: var(--type-figure);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: var(--tracking-figure);
+}
+
+/* ========================================================================= */
+/* MOBILE ADJUSTMENTS                                                        */
+/* ========================================================================= */
+@media (max-width: 599px) {
+  .hero-title {
+    font-size: clamp(3.45rem, 13.8vw, 5.15rem);
   }
 
+  .page-title {
+    font-size: clamp(3rem, 12.5vw, 4.5rem);
+  }
+
+  .section-title {
+    font-size: 2.8rem;
+  }
+
+  .intro,
+  body {
+    font-size: 1rem;
+  }
+
+  .eyebrow,
+  .mono {
+    font-size: .75rem;
+  }
+
+  .figure {
+    font-size: 7rem;
+  }
+}
+
+@layer base {
   html, body {
-    font-family: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif !important;
-    background-color: var(--bg) !important;
-    color: var(--white);
     transition: background-color 0.25s ease, color 0.25s ease;
   }
   
   .font-serif, .font-serif-custom, .font-serif-playfair,
-  .font-serif-newsreader, .font-serif-cormorant, .font-serif-instrument {
-    font-family: 'Newsreader', 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif !important;
-    font-variation-settings: "opsz" 72 !important;
-    font-feature-settings: "swsh" 1, "dlig" 1 !important;
+  .font-serif-newsreader, .font-serif-cormorant, .font-serif-instrument, .font-serif-fraunces {
+    font-family: var(--font-display) !important;
   }
 
   .font-mono, [class*="font-mono"], .mono {
-    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    font-family: var(--font-mono) !important;
   }
 
   .font-sans, .font-sans-body {
-    font-family: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif !important;
+    font-family: var(--font-body) !important;
   }
 
-  /* ========================================================================= */
-  /* ALL HEADER & HEADING TYPOGRAPHY — EDITORIAL SERIF (NEWSREADER OPSZ 72)   */
-  /* ========================================================================= */
-  h1, h2, h3, h4, h5, h6,
-  h1[class], h2[class], h3[class], h4[class], h5[class], h6[class],
-  h1.font-serif, h2.font-serif, h3.font-serif, h4.font-serif, h5.font-serif, h6.font-serif,
-  h1.font-serif-newsreader, h2.font-serif-newsreader, h3.font-serif-newsreader, h4.font-serif-newsreader, h5.font-serif-newsreader, h6.font-serif-newsreader,
-  h1.font-serif-playfair, h2.font-serif-playfair, h3.font-serif-playfair, h4.font-serif-playfair, h5.font-serif-playfair, h6.font-serif-playfair,
-  h1.font-serif-cormorant, h2.font-serif-cormorant, h3.font-serif-cormorant, h4.font-serif-cormorant, h5.font-serif-cormorant, h6.font-serif-cormorant,
-  h1.font-serif-instrument, h2.font-serif-instrument, h3.font-serif-instrument, h4.font-serif-instrument, h5.font-serif-instrument, h6.font-serif-instrument,
-  h1.font-sans, h2.font-sans, h3.font-sans, h4.font-sans, h5.font-sans, h6.font-sans,
-  h1.font-display, h2.font-display, h3.font-display, h4.font-display, h5.font-display, h6.font-display,
-  h1.font-cardo, h2.font-cardo, h3.font-cardo, h4.font-cardo, h5.font-cardo, h6.font-cardo,
-  h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
-  header h1, header h2, header h3, header h4, header h5, header h6,
-  header .font-serif,
-  header .font-cardo,
-  header [class*="title"],
-  header [class*="brand"],
-  [role="heading"],
-  [role="heading"] *,
-  .font-header,
-  .font-heading,
-  .font-archivo,
-  .font-display,
-  .font-cardo,
-  .section-header,
-  .section-title,
-  .modal-header,
-  .theme-horizon-block h1, .theme-horizon-block h2, .theme-horizon-block h3, .theme-horizon-block h4,
-  [class*="header"] h1, [class*="header"] h2, [class*="header"] h3, [class*="header"] h4, [class*="header"] h5, [class*="header"] h6,
-  [class*="title"] h1, [class*="title"] h2, [class*="title"] h3, [class*="title"] h4, [class*="title"] h5, [class*="title"] h6 {
-    font-family: 'Newsreader', 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif !important;
-    font-variation-settings: "opsz" 72 !important;
-    font-feature-settings: "swsh" 1, "dlig" 1 !important;
-    font-weight: 400 !important;
-    letter-spacing: -0.02em !important;
-    text-transform: none !important;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: var(--leading-heading);
+    letter-spacing: var(--tracking-heading);
   }
 
-  .editorial-hero-title,
-  .editorial-hero-title *,
-  h1.editorial-hero-title,
-  h1.editorial-hero-title * {
-    font-family: 'Newsreader', 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif !important;
-    font-variation-settings: "opsz" 72 !important;
-    font-feature-settings: "swsh" 1, "dlig" 1 !important;
-    font-weight: 400 !important;
-    letter-spacing: -0.02em !important;
-    text-transform: none !important;
-  }
-
-  em, i, .italic, [class*="italic"],
-  h1 em, h2 em, h3 em, h4 em, h5 em, h6 em,
-  h1 i, h2 i, h3 i, h4 i, h5 i, h6 i,
-  h1 .italic, h2 .italic, h3 .italic, h4 .italic, h5 .italic, h6 .italic,
-  .serif-italic,
-  em.serif-italic,
-  .editorial-hero-title .serif-italic,
-  .editorial-hero-title em,
-  .editorial-hero-title i {
-    font-family: 'Newsreader', 'Playfair Display', Georgia, serif !important;
-    font-style: italic !important;
-    font-variation-settings: "opsz" 72 !important;
-    font-feature-settings: "swsh" 1, "dlig" 1 !important;
+  em, i, .italic, [class*="italic"] {
+    font-family: var(--font-display);
+    font-style: italic;
   }
 
   section,
