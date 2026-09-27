@@ -14,6 +14,81 @@ interface EightSystemsHeroProps {
   titleHighlight?: string;
 }
 
+const SYSTEM_FLAGSHIPS: Record<
+  string,
+  {
+    category: string;
+    title: string;
+    summary: string;
+    imageUrl?: string;
+  }
+> = {
+  'climate-sustainability': {
+    category: 'CLIMATE & SUSTAINABILITY',
+    title: 'Green Industrial Transition',
+    summary:
+      'Research and policy engagement on the barriers to industrial green transition, including technology adoption, renewable energy, regulation and access to green finance.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1621451537084-482c73073a0f?auto=format&fit=crop&w=800&q=80',
+  },
+  'economic-transition': {
+    category: 'ECONOMIC TRANSITION',
+    title: 'Technology Adoption & Firm-Level Evidence',
+    summary:
+      'Survey design and field implementation to understand technology adoption, digitalisation and informality, supported by economic analysis and policy reporting.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80',
+  },
+  'education-human-capital': {
+    category: 'EDUCATION & HUMAN CAPITAL',
+    title: 'Education Systems Transformation & Digital Learning',
+    summary:
+      'Feasibility and investment analysis across primary, secondary, madrasah and technical and vocational education. The work connects curriculum, digital learning, teacher development and institutional capacity.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80',
+  },
+  'health-social-protection': {
+    category: 'HEALTH & SOCIAL PROTECTION',
+    title: 'Climate-Informed Health Systems & Safety Nets',
+    summary:
+      'Multi-hazard diagnostics, preventive community primary care, dynamic social registries, and parametric cash transfers for climate resilience.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80',
+  },
+  'data-digital-governance': {
+    category: 'DATA & DIGITAL GOVERNANCE',
+    title: 'Digital Public Infrastructure & Data Sovereignty',
+    summary:
+      'Sovereign digital identity, open data protocols, citizen privacy charters, and modular digital public goods.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+  },
+  'institutional-effectiveness': {
+    category: 'INSTITUTIONAL EFFECTIVENESS',
+    title: 'Municipal Finance & Institutional Transformation',
+    summary:
+      'Strategic planning, automation, fiscal decentralization, and agile civil-service capability building across key public agencies.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80',
+  },
+  'esg-circular-economy': {
+    category: 'ESG & CIRCULAR ECONOMY',
+    title: 'Circular Industrial Economy & Waste Elimination',
+    summary:
+      'Closed-loop industrial resource loops, virgin material reduction, extended producer responsibility, and supply chain decarbonization.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80',
+  },
+  'ai-public-systems': {
+    category: 'AI FOR PUBLIC SYSTEMS',
+    title: 'Predictive Public Systems & Sovereign AI',
+    summary:
+      'Dynamic public grid balancing, ethical algorithmic assessment, and mission-critical decision workflows for sovereign institutions.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
+  },
+};
+
 export const EightSystemsHero: React.FC<EightSystemsHeroProps> = ({
   systems,
   selectedSystemId,
@@ -44,6 +119,12 @@ export const EightSystemsHero: React.FC<EightSystemsHeroProps> = ({
   const renderPill = (system: SystemItem) => {
     const isSelected = selectedSystemId === system.id;
     const isHovered = !hasActive && hoveredSystemId === system.id;
+    const flagship = SYSTEM_FLAGSHIPS[system.id];
+
+    const displayCategory = flagship?.category || system.name.toUpperCase();
+    const displayTitle = flagship?.title || system.name;
+    const displaySummary = flagship?.summary || system.summary;
+    const displayImage = flagship?.imageUrl || system.imageUrl;
 
     return (
       <button
@@ -61,14 +142,14 @@ export const EightSystemsHero: React.FC<EightSystemsHeroProps> = ({
             setHoveredSystemId(null);
           }
         }}
-        className={`relative w-full flex flex-col justify-between text-left p-4 sm:p-5 rounded-2xl transition-all duration-200 cursor-pointer select-none outline-none border ${
+        className={`group relative w-full flex flex-col justify-between text-left rounded-xl transition-all duration-200 cursor-pointer select-none outline-none overflow-hidden border ${
           isSelected
-            ? 'bg-[#0f1d33] border-[#ff7e67] shadow-xl ring-1 ring-[#ff7e67]/40 text-white'
+            ? 'bg-[#0f1d33] border-[#ff7e67] shadow-xl ring-1 ring-[#ff7e67]/40 text-white -translate-y-0.5'
             : hasActive
             ? 'bg-[#081324]/60 border-slate-800/60 text-slate-400 opacity-75'
             : isHovered
-            ? 'group bg-[#0d1a2d] border-slate-700 text-white shadow-lg -translate-y-0.5'
-            : 'group bg-[#081324]/85 hover:bg-[#0c182b] border-slate-800/90 text-slate-200 hover:text-white'
+            ? 'bg-[#0d1a2d] border-slate-700 text-white shadow-lg -translate-y-0.5'
+            : 'bg-[#081324]/90 hover:bg-[#0c182b] border-slate-800/90 text-slate-200 hover:text-white'
         }`}
         style={{
           boxShadow: isSelected
@@ -78,48 +159,73 @@ export const EightSystemsHero: React.FC<EightSystemsHeroProps> = ({
             : '0 2px 8px rgba(0,0,0,0.2)',
         }}
       >
-        {/* System Pill Image */}
-        {system.imageUrl && (
-          <div className="relative w-full h-32 sm:h-36 rounded-xl overflow-hidden mb-3.5 bg-slate-900/90 shrink-0 border border-slate-800/70 group-hover:border-slate-700 transition-colors">
+        {/* Top Image */}
+        {displayImage && (
+          <div className="relative w-full h-44 sm:h-48 overflow-hidden bg-slate-900 shrink-0 border-b border-slate-800/80">
             <img
-              src={system.imageUrl}
-              alt={system.name}
+              src={displayImage}
+              alt={displayTitle}
               referrerPolicy="no-referrer"
               loading="lazy"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+              className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#081324] via-[#081324]/30 to-black/20" />
-            <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/10 text-[10px] font-mono text-slate-300">
-              <span
-                className="w-1.5 h-1.5 rounded-full"
-                style={{ backgroundColor: system.color, boxShadow: `0 0 6px ${system.color}` }}
-              />
-              <span>{system.shortName || system.name}</span>
-            </div>
           </div>
         )}
 
-        {/* Card Title */}
-        <h4 className={`font-sans text-sm sm:text-base font-bold leading-snug tracking-tight ${
-          isSelected
-            ? 'text-white'
-            : hasActive
-            ? 'text-slate-300'
-            : 'text-slate-100 group-hover:text-white'
-        }`}>
-          {system.name}
-        </h4>
+        {/* Card Content Container */}
+        <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between text-left w-full">
+          <div>
+            {/* Category Eyebrow with original system color */}
+            <p
+              style={{
+                fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif",
+                color: system.color || '#ff7e67',
+              }}
+              className="text-[11px] font-bold tracking-[0.14em] uppercase mb-2.5"
+            >
+              {displayCategory}
+            </p>
 
-        {/* Card Summary Description */}
-        <p className={`text-[11.5px] font-light leading-relaxed mt-2 line-clamp-2 ${
-          isSelected
-            ? 'text-slate-300'
-            : hasActive
-            ? 'text-slate-500'
-            : 'text-slate-400 group-hover:text-slate-300'
-        }`}>
-          {system.summary}
-        </p>
+            {/* Card Title */}
+            <h4
+              style={{ fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" }}
+              className={`text-lg sm:text-[20px] font-bold leading-[1.25] tracking-tight mb-3 ${
+                isSelected
+                  ? 'text-white'
+                  : hasActive
+                  ? 'text-slate-300'
+                  : 'text-slate-100 group-hover:text-white'
+              }`}
+            >
+              {displayTitle}
+            </h4>
+
+            {/* Card Summary Description */}
+            <p
+              style={{ fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" }}
+              className={`text-[13px] sm:text-[13.5px] font-normal leading-[1.6] line-clamp-3 sm:line-clamp-4 mb-5 ${
+                isSelected
+                  ? 'text-slate-300'
+                  : hasActive
+                  ? 'text-slate-500'
+                  : 'text-slate-400 group-hover:text-slate-300'
+              }`}
+            >
+              {displaySummary}
+            </p>
+          </div>
+
+          {/* Explore the work Link/Action with original theme colors */}
+          <div className="pt-2 mt-auto">
+            <span
+              style={{ fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" }}
+              className="inline-flex items-center gap-1.5 text-[13px] font-bold text-slate-200 border-b border-slate-700 pb-0.5 group-hover:text-[#ff7e67] group-hover:border-[#ff7e67] transition-colors"
+            >
+              <span>Explore the work</span>
+              <span className="text-[14px] leading-none select-none">↗</span>
+            </span>
+          </div>
+        </div>
       </button>
     );
   };
@@ -136,44 +242,8 @@ export const EightSystemsHero: React.FC<EightSystemsHeroProps> = ({
         }}
       />
 
-      {/* Main Section Header */}
-      <div className="space-y-6 sm:space-y-8 pt-2 pb-6 px-0 mx-0">
-        {/* Exact Typography Title - Placed First */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="pl-1 sm:pl-2 pt-1 pb-1 w-full max-w-none"
-        >
-          {(() => {
-            const isFullSentenceInMain =
-              titleMain?.trim() === 'Eight sectors. One integrated delivery model.' ||
-              titleMain?.trim() === 'Eight sectors. One integrated delivery model';
-
-            const displayTitleMain = isFullSentenceInMain
-              ? 'Eight sectors. One '
-              : titleMain && titleMain !== 'Eight systems. One '
-              ? titleMain
-              : 'Eight sectors. One ';
-
-            const displayTitleHighlight = isFullSentenceInMain
-              ? 'integrated delivery model.'
-              : titleHighlight && titleHighlight !== 'overlapping reality.'
-              ? titleHighlight
-              : 'integrated delivery model.';
-
-            return (
-              <h1
-                className={`${getFontClass()} leading-[1.08] sm:leading-[1.06] tracking-[-0.025em] text-slate-100 font-normal whitespace-nowrap overflow-visible`}
-                style={{ fontSize: 'clamp(22px, 3.8vw, 64px)' }}
-              >
-                <span className="inline">{displayTitleMain}</span>
-                <span className="inline text-slate-300">{displayTitleHighlight}</span>
-              </h1>
-            );
-          })()}
-        </motion.div>
-
+      {/* Main Section Container */}
+      <div className="pt-2 pb-6 px-0 mx-0">
         {/* 8 Systems Pills Grid / Buttons - Hidden when detail panel is active */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -181,7 +251,30 @@ export const EightSystemsHero: React.FC<EightSystemsHeroProps> = ({
           transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           className={`w-full relative z-10 ${selectedSystemId ? 'hidden' : 'block'}`}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 w-full">
+            {/* Header Slot - First Card (Static title block, not a button) */}
+            <div
+              id="system-pill-blank"
+              style={{
+                paddingLeft: '27px',
+                paddingTop: 0,
+                paddingRight: 0,
+                paddingBottom: 0,
+                backgroundColor: 'transparent',
+              }}
+              className="relative w-full h-full min-h-[360px] flex flex-col justify-start text-left select-text outline-none border-0 bg-transparent p-0 shadow-none"
+            >
+              <div className="w-full">
+                <h1
+                  style={{ fontSize: '71px' }}
+                  className={`${getFontClass()} leading-[1.04] sm:leading-[1.02] tracking-[-0.025em] font-normal text-slate-100`}
+                >
+                  <span className="inline">Eight sectors. One </span>
+                  <span className="inline text-slate-300">integrated delivery model.</span>
+                </h1>
+              </div>
+            </div>
+
             {systems.map(renderPill)}
           </div>
         </motion.div>
