@@ -59,7 +59,7 @@ export const ExecutiveCard: React.FC<ExecutiveCardProps> = ({
   ];
 
   return (
-    <section id="executive-briefing" className="py-12 md:py-20 bg-[#050a12] border-t border-slate-800">
+    <section id="executive-briefing" className="light light-section py-12 md:py-20 bg-[#f8fafc] text-slate-900 border-t border-slate-200">
       <div className="w-full px-4 sm:px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

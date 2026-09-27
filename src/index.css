@@ -209,6 +209,70 @@
 }
 
 
+/* ========================================================================= */
+/* DEDICATED LIGHT THEME FOR CLIENT DELIVERABLES SECTION                     */
+/* ========================================================================= */
+#client-deliverables-section {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
+}
+
+#client-deliverables-section h1,
+#client-deliverables-section h2,
+#client-deliverables-section h3 {
+  color: #0f172a !important;
+}
+
+#client-deliverables-section p {
+  color: #334155;
+}
+
+#client-deliverables-section .text-white,
+#client-deliverables-section .text-slate-100,
+#client-deliverables-section .text-slate-200 {
+  color: #0f172a !important;
+}
+
+#client-deliverables-section .text-slate-300,
+#client-deliverables-section .text-slate-400 {
+  color: #475569 !important;
+}
+
+#client-deliverables-section .border-slate-800,
+#client-deliverables-section .border-slate-800\/80,
+#client-deliverables-section .border-slate-800\/60,
+#client-deliverables-section .border-slate-800\/50,
+#client-deliverables-section .border-slate-700 {
+  border-color: #e2e8f0 !important;
+}
+
+#client-deliverables-section .divide-slate-800\/80 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #e2e8f0 !important;
+}
+
+#client-deliverables-section .bg-\[\#081322\],
+#client-deliverables-section .bg-\[\#081322\]\/90,
+#client-deliverables-section .bg-\[\#081220\],
+#client-deliverables-section .bg-\[\#050a12\],
+#client-deliverables-section .bg-\[\#0a182b\] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+#client-deliverables-section .hover\:bg-\[\#0a182b\]:hover {
+  background-color: #f8fafc !important;
+}
+
+/* ========================================================================= */
+/* DEDICATED DARK THEME FOR POLYSOLUTIONS SECTION                           */
+/* ========================================================================= */
+#polysolutions-section {
+  background-color: #050a12 !important;
+  color: #f8fafc !important;
+  border-color: #1e293b !important;
+}
+
 /* Light mode specific element mappings */
 .light body {
   background-color: #F8FAFC;
