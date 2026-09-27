@@ -239,7 +239,7 @@ export const PolySolutionsSection: React.FC<PolySolutionsSectionProps> = ({
     <section
       id="polysolutions-section"
       ref={sectionRef}
-      className="relative w-full bg-[#050a12] text-white mt-0 pt-0 pb-20 sm:pb-32 px-4 sm:px-6 lg:px-10 border-t-0 select-text scroll-smooth"
+      className="relative w-full bg-[#050a12] mt-0 pt-0 pb-20 sm:pb-32 px-4 sm:px-6 lg:px-10 border-t-0 select-text scroll-smooth"
     >
       {/* Background Ambient Glow Gradients */}
       <div className="absolute top-1/6 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-[#ff7e67]/5 rounded-full blur-[150px] pointer-events-none" />
